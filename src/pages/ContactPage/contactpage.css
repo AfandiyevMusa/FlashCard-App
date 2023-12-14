@@ -1,0 +1,22 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .contact-section {
+    text-align: center;
+  }
+  
+  .contact-section h1 {
+    color: #2d3748;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .contact-section p {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
