@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FlashCardItem from "../../components/FlashCardItem/index";
-import Navbar from "../../components/Navbar";
-import CreateCardModal from "../../components/CreateCardModal";
+import Navbar from "../../components/Navbar/index";
+import CreateCardModal from "../../components/CreateCardModal/index";
+import UpdateCardModal from "../../components/UpdateCardModal/index";
 import "./cards.css";
 
 const Cards = () => {
     const [cards, setCards] = useState([]);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+    const [updateCard, setUpdateCard] = useState(null);
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -33,7 +36,8 @@ const Cards = () => {
     };
 
     const handleUpdate = (card) => {
-        console.log("Update clicked for card:", card);
+        setUpdateCard(card);
+        setIsUpdateModalOpen(true);
     };
 
     const handleCreate = async (newCard) => {
@@ -55,12 +59,32 @@ const Cards = () => {
         }
     };
 
+    const handleUpdateCard = async (updatedCard) => {
+        try {
+            setCards((prevCards) =>
+                prevCards.map((card) =>
+                    card.id === updatedCard.id ? updatedCard : card
+                )
+            );
+
+            await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
+
+            setIsUpdateModalOpen(false);
+        } catch (error) {
+            console.error("Error updating card:", error);
+        }
+    };
+
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
     };
 
     const closeCreateModal = () => {
         setIsCreateModalOpen(false);
+    };
+
+    const closeUpdateModal = () => {
+        setIsUpdateModalOpen(false);
     };
 
     return (
@@ -86,6 +110,14 @@ const Cards = () => {
             </div>
             {isCreateModalOpen && (
                 <CreateCardModal onCreate={handleCreate} onClose={closeCreateModal} />
+            )}
+
+            {isUpdateModalOpen && (
+                <UpdateCardModal
+                    card={updateCard}
+                    onUpdate={handleUpdateCard}
+                    onClose={closeUpdateModal}
+                />
             )}
         </div>
     );

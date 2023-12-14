@@ -25,7 +25,7 @@ const FlashCardItem = ({ card, onDelete, onUpdate }) => {
                     <p className="status">Status: {card.status}</p>
                 </div>
                 <div className="back">
-                    <p>{card.backAnswer}</p>
+                    <p className="backTxt">{card.backAnswer}</p>
                 </div>
             </div>
         </div>
