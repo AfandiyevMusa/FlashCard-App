@@ -11,14 +11,24 @@ const Cards = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [updateCard, setUpdateCard] = useState(null);
-    const [searchInput, setSearchInput] = useState(""); // Add this line
+    const [searchInput, setSearchInput] = useState("");
+    const [selectedStatus, setSelectedStatus] = useState("All status");
+
+    const handleStatusChange = (event) => {
+        setSelectedStatus(event.target.value);
+    };
 
     useEffect(() => {
         const fetchCards = async () => {
             try {
-                const response = await axios.get("http://localhost:3001/cards");
+                let apiUrl = "http://localhost:3001/cards";
 
-                // Sort cards by most recent modificationDateTime in descending order
+                if (selectedStatus !== "All status") {
+                    apiUrl += `?status=${selectedStatus}`;
+                }
+
+                const response = await axios.get(apiUrl);
+
                 const sortedCards = response.data.sort((a, b) => {
                     return (
                         new Date(b.lastModificationDateTime) -
@@ -33,7 +43,7 @@ const Cards = () => {
         };
 
         fetchCards();
-    }, []);
+    }, [selectedStatus]);
 
     const handleDelete = async (id) => {
         try {
@@ -117,8 +127,15 @@ const Cards = () => {
                 <div className="creating">
                     <h1>Flash Cards</h1>
                     <form id="operations">
-                        <select id="filterstatus" name="category">
-                            <option>Hello</option>
+                        <select
+                            id="filterstatus"
+                            name="category"
+                            value={selectedStatus}
+                            onChange={handleStatusChange}
+                        >
+                            <option>All status</option>
+                            <option>Want to Learn</option>
+                            <option>Mark as Noted</option>
                         </select>
                         <input
                             className="search"

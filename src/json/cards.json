@@ -5,7 +5,7 @@
       "frontText": "What is the capital of Australia?",
       "backAnswer": "Canberra is the capital of Australia.",
       "lastModificationDateTime": "2023-12-11T14:04:00",
-      "status": "Want to Learn"
+      "status": "Mark as Noted"
     },
     {
       "id": 5,
@@ -19,7 +19,7 @@
       "frontText": "What is the currency of China?",
       "backAnswer": "The currency of China is the Renminbi (Yuan).",
       "lastModificationDateTime": "2023-12-11T17:11:00",
-      "status": "Want to Learn"
+      "status": "Mark as Noted"
     },
     {
       "id": 7,
@@ -75,7 +75,7 @@
       "frontText": "What is the smallest prime number?",
       "backAnswer": "The smallest prime number is 2.",
       "lastModificationDateTime": "2023-12-11T17:19:00",
-      "status": "Want to Learn"
+      "status": "Mark as Noted"
     },
     {
       "id": 15,
