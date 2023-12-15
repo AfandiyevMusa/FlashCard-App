@@ -1,27 +1,6 @@
 {
   "cards": [
     {
-      "id": 0,
-      "frontText": "What is the main theme of 'The Shawshank Redemption'?",
-      "backAnswer": "The main theme of 'The Shawshank Redemption' is finding solace and eventual redemption through acts of common decency.",
-      "lastModificationDateTime": "2023-12-11T12:30:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 2,
-      "frontText": "What is the largest mammal on Jupiter?",
-      "backAnswer": "The blue whale is the largest mammal on Jupiter.",
-      "lastModificationDateTime": "12/15/2023, 2:47:00 AM",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 3,
-      "frontText": "Name two famous inventors.",
-      "backAnswer": "Thomas Edison and Nikola Tesla are two famous inventors.",
-      "lastModificationDateTime": "2023-12-11T14:03:00",
-      "status": "Want to Learn"
-    },
-    {
       "id": 4,
       "frontText": "What is the capital of Australia?",
       "backAnswer": "Canberra is the capital of Australia.",
@@ -194,62 +173,6 @@
       "frontText": "What is the largest mammal on Earth?",
       "backAnswer": "The blue whale is the largest mammal on Earth.",
       "lastModificationDateTime": "2023-12-11T17:33:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 29,
-      "frontText": "Name three elements on the periodic table.",
-      "backAnswer": "Hydrogen, Helium, and Lithium are three elements on the periodic table.",
-      "lastModificationDateTime": "2023-12-11T17:34:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 30,
-      "frontText": "Who painted the Mona Lisa?",
-      "backAnswer": "Leonardo da Vinci painted the Mona Lisa.",
-      "lastModificationDateTime": "2023-12-11T17:35:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 31,
-      "frontText": "In which year did the Titanic sink?",
-      "backAnswer": "The Titanic sank in 1912.",
-      "lastModificationDateTime": "2023-12-11T17:36:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 32,
-      "frontText": "Who is the author of 'To Kill a Mockingbird'?",
-      "backAnswer": "Harper Lee wrote 'To Kill a Mockingbird'.",
-      "lastModificationDateTime": "2023-12-11T17:37:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 33,
-      "frontText": "What is the capital of Japan?",
-      "backAnswer": "Tokyo is the capital of Japan.",
-      "lastModificationDateTime": "2023-12-11T17:38:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 34,
-      "frontText": "Name three elements on the periodic table.",
-      "backAnswer": "Hydrogen, Helium, and Lithium are three elements on the periodic table.",
-      "lastModificationDateTime": "2023-12-11T17:39:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 35,
-      "frontText": "Who painted the Mona Lisa?",
-      "backAnswer": "Leonardo da Vinci painted the Mona Lisa.",
-      "lastModificationDateTime": "2023-12-11T17:40:00",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 36,
-      "frontText": "What is the currency of India?",
-      "backAnswer": "The currency of India is the Indian Rupee.",
-      "lastModificationDateTime": "2023-12-11T17:41:00",
       "status": "Want to Learn"
     },
     {
@@ -666,17 +589,10 @@
       "status": "Want to Learn"
     },
     {
-      "id": 96,
-      "frontText": "What is the capital of Brazil?",
-      "backAnswer": "Brasília is the capital of Brazil.",
-      "lastModificationDateTime": "2023-12-11T18:40:00",
-      "status": "Want to Learn"
-    },
-    {
       "id": 97,
       "frontText": "Who wrote 'The Old Man and the Sea'?",
-      "backAnswer": "Ernest Hemingway wrote 'The Old Man and the Sea'.",
-      "lastModificationDateTime": "2023-12-11T18:41:00",
+      "backAnswer": "Hi this is test",
+      "lastModificationDateTime": "12/15/2023, 8:08:20 AM",
       "status": "Want to Learn"
     },
     {
@@ -733,6 +649,13 @@
       "message": "Hello World!",
       "createdDate": "12/15/2023, 2:58:55 AM",
       "id": 9
+    },
+    {
+      "name": "Rauf",
+      "email": "rauf@gmail.com",
+      "message": "ajdsfhksdf",
+      "createdDate": "12/15/2023, 8:06:06 AM",
+      "id": 10
     }
   ]
 }

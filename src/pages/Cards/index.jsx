@@ -11,12 +11,22 @@ const Cards = () => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [updateCard, setUpdateCard] = useState(null);
+    const [searchInput, setSearchInput] = useState(""); // Add this line
 
     useEffect(() => {
         const fetchCards = async () => {
             try {
                 const response = await axios.get("http://localhost:3001/cards");
-                setCards(response.data);
+
+                // Sort cards by most recent modificationDateTime in descending order
+                const sortedCards = response.data.sort((a, b) => {
+                    return (
+                        new Date(b.lastModificationDateTime) -
+                        new Date(a.lastModificationDateTime)
+                    );
+                });
+
+                setCards(sortedCards);
             } catch (error) {
                 console.error("Error fetching cards:", error);
             }
@@ -54,6 +64,7 @@ const Cards = () => {
             await axios.post("http://localhost:3001/cards", newCard);
 
             setIsCreateModalOpen(false);
+            window.location.reload();
         } catch (error) {
             console.error("Error creating card:", error);
         }
@@ -67,9 +78,13 @@ const Cards = () => {
                 )
             );
 
-            await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
+            await axios.put(
+                `http://localhost:3001/cards/${updatedCard.id}`,
+                updatedCard
+            );
 
             setIsUpdateModalOpen(false);
+            window.location.reload();
         } catch (error) {
             console.error("Error updating card:", error);
         }
@@ -87,18 +102,37 @@ const Cards = () => {
         setIsUpdateModalOpen(false);
     };
 
+    const handleSearchInputChange = (event) => {
+        setSearchInput(event.target.value);
+    };
+
+    const filteredCards = cards.filter((card) =>
+        card.frontText.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
     return (
         <div>
             <Navbar />
             <div className="cards-location">
                 <div className="creating">
                     <h1>Flash Cards</h1>
+                    <form id="operations">
+                        <select id="filterstatus" name="category">
+                            <option>Hello</option>
+                        </select>
+                        <input
+                            className="search"
+                            placeholder="Enter front Text..."
+                            value={searchInput}
+                            onChange={handleSearchInputChange}
+                        ></input>
+                    </form>
                     <button className="create-btn btn btn" onClick={openCreateModal}>
                         Create
                     </button>
                 </div>
                 <div className="flashcard-list">
-                    {cards.map((card) => (
+                    {filteredCards.map((card) => (
                         <FlashCardItem
                             key={card.id}
                             card={card}
