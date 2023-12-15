@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./flashcarditem.css";
-import axios from "axios";
 
 const FlashCardItem = ({ card, onDelete, onUpdate }) => {
     const [isFlipped, setIsFlipped] = useState(false);

@@ -13,9 +13,15 @@ const Cards = () => {
     const [updateCard, setUpdateCard] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
+    const [selectedSortings, setSelectedSortings] = useState([]);
 
     const handleStatusChange = (event) => {
         setSelectedStatus(event.target.value);
+    };
+
+    const handleSortingChange = (event) => {
+        const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+        setSelectedSortings(selectedOptions);
     };
 
     useEffect(() => {
@@ -29,11 +35,26 @@ const Cards = () => {
 
                 const response = await axios.get(apiUrl);
 
-                const sortedCards = response.data.sort((a, b) => {
-                    return (
-                        new Date(b.lastModificationDateTime) -
-                        new Date(a.lastModificationDateTime)
-                    );
+                let sortedCards = response.data;
+
+                // Sorting based on selected options
+                selectedSortings.forEach((sortingOption) => {
+                    switch (sortingOption) {
+                        case "frontTextAZ":
+                            sortedCards = sortedCards.sort((a, b) => a.frontText.localeCompare(b.frontText));
+                            break;
+                        case "frontTextZA":
+                            sortedCards = sortedCards.sort((a, b) => b.frontText.localeCompare(a.frontText));
+                            break;
+                        case "backAnswerAZ":
+                            sortedCards = sortedCards.sort((a, b) => a.backAnswer.localeCompare(b.backAnswer));
+                            break;
+                        case "backAnswerZA":
+                            sortedCards = sortedCards.sort((a, b) => b.backAnswer.localeCompare(a.backAnswer));
+                            break;
+                        default:
+                            break;
+                    }
                 });
 
                 setCards(sortedCards);
@@ -43,7 +64,8 @@ const Cards = () => {
         };
 
         fetchCards();
-    }, [selectedStatus]);
+    }, [selectedStatus, selectedSortings]);
+
 
     const handleDelete = async (id) => {
         try {
@@ -143,6 +165,18 @@ const Cards = () => {
                             value={searchInput}
                             onChange={handleSearchInputChange}
                         ></input>
+                        <select
+                            id="sortOrder"
+                            name="sortOrder"
+                            value={selectedSortings}
+                            onChange={handleSortingChange}
+                            multiple // Enable multiple selection
+                        >
+                            <option value="frontTextAZ">Sort frontText A-Z</option>
+                            <option value="frontTextZA">Sort frontText Z-A</option>
+                            <option value="backAnswerAZ">Sort backAnswer A-Z</option>
+                            <option value="backAnswerZA">Sort backAnswer Z-A</option>
+                        </select>
                     </form>
                     <button className="create-btn btn btn" onClick={openCreateModal}>
                         Create

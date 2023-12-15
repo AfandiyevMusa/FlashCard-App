@@ -1,40 +1,61 @@
-  .cards-location {
-    max-width: 1800px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .flashcard-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
+.cards-location {
+  max-width: 1800px;
+  margin: auto;
+  padding: 20px;
+}
 
-  .creating{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .create-btn{
-    background-color: #2d3748;
-    color: white;
-    font-size: 20px;
-    margin-right: 30px;
-  }
+.flashcard-list {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  #operations{
-    width: 500px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+.creating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
 
-  #filterstatus{
-    margin-right: 100px;
-    padding: 15px;
-    margin-bottom: 10px;
-  }
+.create-btn {
+  background-color: #2d3748;
+  color: white;
+  font-size: 20px;
+  margin-right: 30px;
+}
 
-  .search{
-    padding: 15px;
-  }
+#operations {
+  width: 800px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#filterstatus {
+  margin-right: 100px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.search {
+  padding: 15px;
+  width: 300px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.each-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sortOrder {
+  margin-left: 50px;
+  margin-bottom: 10px;
+  padding: 10px;
+}

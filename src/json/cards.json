@@ -218,13 +218,6 @@
       "status": "Want to Learn"
     },
     {
-      "id": 43,
-      "frontText": "Who discovered the theory of relativity?",
-      "backAnswer": "Albert Einstein is credited with the theory of relativity.",
-      "lastModificationDateTime": "2023-12-11T17:48:00",
-      "status": "Want to Learn"
-    },
-    {
       "id": 44,
       "frontText": "What is the largest bird in the world?",
       "backAnswer": "The ostrich is the largest bird in the world.",
