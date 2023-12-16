@@ -4,15 +4,15 @@
       "id": 4,
       "frontText": "What is the capital of Australia?",
       "backAnswer": "Canberra is the capital of Australia.",
-      "lastModificationDateTime": "2023-12-11T14:04:00",
+      "lastModificationDateTime": "12/16/2023, 7:19:36 PM",
       "status": "Mark as Noted"
     },
     {
       "id": 5,
       "frontText": "Who wrote 'The Great Gatsby'?",
       "backAnswer": "F. Scott Fitzgerald wrote 'The Great Gatsby'.",
-      "lastModificationDateTime": "2023-12-11T17:10:00",
-      "status": "Want to Learn"
+      "lastModificationDateTime": "12/16/2023, 7:20:21 PM",
+      "status": "Mark as Noted"
     },
     {
       "id": 6,
@@ -617,38 +617,6 @@
       "content": "Hiii",
       "date": 1702278439514,
       "id": 5
-    },
-    {
-      "name": "Musa",
-      "email": "afandiyev.musa2003@gmail.com",
-      "message": "hello",
-      "id": 6
-    },
-    {
-      "name": "Rauf",
-      "email": "rauf@gmail.com",
-      "message": "sdhfksd",
-      "id": 7
-    },
-    {
-      "name": "abdullah",
-      "email": "asdfjshdf@gmail.com",
-      "message": "jsdfhjkhsdf",
-      "id": 8
-    },
-    {
-      "name": "hello",
-      "email": "world@gmail.com",
-      "message": "Hello World!",
-      "createdDate": "12/15/2023, 2:58:55 AM",
-      "id": 9
-    },
-    {
-      "name": "Rauf",
-      "email": "rauf@gmail.com",
-      "message": "ajdsfhksdf",
-      "createdDate": "12/15/2023, 8:06:06 AM",
-      "id": 10
     }
   ]
 }

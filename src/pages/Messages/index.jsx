@@ -19,7 +19,19 @@ const Messages = () => {
         };
 
         fetchMessages();
-    }, []); // Empty dependency array to fetch messages only once
+    }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            // Delete the message from the JSON server
+            await axios.delete(`http://localhost:3001/messages/${id}`);
+
+            // Remove the message from the UI
+            setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
+        } catch (error) {
+            console.error("Error deleting message:", error);
+        }
+    };
 
     return (
         <div>
@@ -28,7 +40,7 @@ const Messages = () => {
                 <h1>Messages</h1>
                 <div className="messages-list">
                     {messages.map((message) => (
-                        <MessageItem key={message.id} message={message} />
+                        <MessageItem key={message.id} message={message} onDelete={handleDelete} />
                     ))}
                 </div>
             </div>

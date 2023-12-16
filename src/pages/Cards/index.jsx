@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import FlashCardItem from "../../components/FlashCardItem/index";
 import Navbar from "../../components/Navbar/index";
@@ -14,58 +14,43 @@ const Cards = () => {
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
     const [selectedSortings, setSelectedSortings] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const endOfCardsRef = useRef(null);
 
     const handleStatusChange = (event) => {
         setSelectedStatus(event.target.value);
     };
 
     const handleSortingChange = (event) => {
-        const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+        const selectedOptions = Array.from(
+            event.target.selectedOptions,
+            (option) => option.value
+        );
         setSelectedSortings(selectedOptions);
     };
 
     useEffect(() => {
         const fetchCards = async () => {
             try {
-                let apiUrl = "http://localhost:3001/cards";
+                let apiUrl = `http://localhost:3001/cards?_page=${page}&_limit=12`;
 
                 if (selectedStatus !== "All status") {
-                    apiUrl += `?status=${selectedStatus}`;
+                    apiUrl += `&status=${selectedStatus}`;
                 }
 
                 const response = await axios.get(apiUrl);
+                const newCards = response.data;
 
-                let sortedCards = response.data;
-
-                // Sorting based on selected options
-                selectedSortings.forEach((sortingOption) => {
-                    switch (sortingOption) {
-                        case "frontTextAZ":
-                            sortedCards = sortedCards.sort((a, b) => a.frontText.localeCompare(b.frontText));
-                            break;
-                        case "frontTextZA":
-                            sortedCards = sortedCards.sort((a, b) => b.frontText.localeCompare(a.frontText));
-                            break;
-                        case "backAnswerAZ":
-                            sortedCards = sortedCards.sort((a, b) => a.backAnswer.localeCompare(b.backAnswer));
-                            break;
-                        case "backAnswerZA":
-                            sortedCards = sortedCards.sort((a, b) => b.backAnswer.localeCompare(a.backAnswer));
-                            break;
-                        default:
-                            break;
-                    }
-                });
-
-                setCards(sortedCards);
+                setCards((prevCards) => [...prevCards, ...newCards]);
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching cards:", error);
             }
         };
 
         fetchCards();
-    }, [selectedStatus, selectedSortings]);
-
+    }, [page, selectedStatus]);
 
     const handleDelete = async (id) => {
         try {
@@ -84,19 +69,16 @@ const Cards = () => {
 
     const handleCreate = async (newCard) => {
         try {
-            // Define currentDateTime here
             const currentDateTime = new Date().toLocaleString();
 
-            // Add lastModificationDateTime and status to the new card
             newCard.lastModificationDateTime = currentDateTime;
-            newCard.status = "Want to Learn"; // Set a default value
+            newCard.status = "Want to Learn";
 
             setCards((prevCards) => [...prevCards, newCard]);
 
             await axios.post("http://localhost:3001/cards", newCard);
 
             setIsCreateModalOpen(false);
-            window.location.reload();
         } catch (error) {
             console.error("Error creating card:", error);
         }
@@ -105,22 +87,35 @@ const Cards = () => {
     const handleUpdateCard = async (updatedCard) => {
         try {
             setCards((prevCards) =>
-                prevCards.map((card) =>
-                    card.id === updatedCard.id ? updatedCard : card
-                )
+                prevCards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
             );
 
-            await axios.put(
-                `http://localhost:3001/cards/${updatedCard.id}`,
-                updatedCard
-            );
+            await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
 
             setIsUpdateModalOpen(false);
-            window.location.reload();
         } catch (error) {
             console.error("Error updating card:", error);
         }
     };
+
+    useEffect(() => {
+        const fetchInitialCards = async () => {
+            try {
+                const apiUrl = `http://localhost:3001/cards?_page=1&_limit=12`;
+
+                if (selectedStatus !== "All status") {
+                    apiUrl += `&status=${selectedStatus}`;
+                }
+
+                const response = await axios.get(apiUrl);
+                setCards(response.data);
+            } catch (error) {
+                console.error("Error fetching initial cards:", error);
+            }
+        };
+
+        fetchInitialCards();
+    }, [selectedStatus]);
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -141,6 +136,23 @@ const Cards = () => {
     const filteredCards = cards.filter((card) =>
         card.frontText.toLowerCase().includes(searchInput.toLowerCase())
     );
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            if (entries[0].isIntersecting && !loading) {
+                setLoading(true);
+                setPage((prevPage) => prevPage + 1);
+            }
+        },
+        { threshold: 0.1 }
+    );
+
+    useEffect(() => {
+        observer.observe(endOfCardsRef.current);
+        return () => {
+            observer.disconnect();
+        };
+    }, [observer]);
 
     return (
         <div>
@@ -170,7 +182,7 @@ const Cards = () => {
                             name="sortOrder"
                             value={selectedSortings}
                             onChange={handleSortingChange}
-                            multiple // Enable multiple selection
+                            multiple
                         >
                             <option value="frontTextAZ">Sort frontText A-Z</option>
                             <option value="frontTextZA">Sort frontText Z-A</option>
@@ -183,7 +195,7 @@ const Cards = () => {
                     </button>
                 </div>
                 <div className="flashcard-list">
-                    {filteredCards.map((card) => (
+                    {filteredCards.map((card, index) => (
                         <FlashCardItem
                             key={card.id}
                             card={card}
@@ -191,6 +203,8 @@ const Cards = () => {
                             onUpdate={handleUpdate}
                         />
                     ))}
+                    <div ref={endOfCardsRef}></div>
+                    {loading && <p className="loading-message">Loading more cards...</p>}
                 </div>
             </div>
             {isCreateModalOpen && (
