@@ -8,6 +8,8 @@ const FlashCardItem = ({ card, onDelete, onUpdate }) => {
         setIsFlipped(!isFlipped);
     };
 
+    console.log("lastModificationDateTime:", card.lastModificationDateTime); // Add this line
+
     return (
         <div className={`flashcard-item ${isFlipped ? "flipped" : ""}`} onClick={handleFlip}>
             <div className="flipper">
@@ -22,6 +24,7 @@ const FlashCardItem = ({ card, onDelete, onUpdate }) => {
                         </button>
                     </div>
                     <p className="status">Status: {card.status}</p>
+                    <span className="hidden" data-last-modification={card.lastModificationDateTime}></span>
                 </div>
                 <div className="back">
                     <p className="backTxt">{card.backAnswer}</p>

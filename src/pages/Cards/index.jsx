@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FlashCardItem from "../../components/FlashCardItem/index";
 import Navbar from "../../components/Navbar/index";
@@ -15,42 +15,98 @@ const Cards = () => {
     const [selectedStatus, setSelectedStatus] = useState("All status");
     const [selectedSortings, setSelectedSortings] = useState([]);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-    const endOfCardsRef = useRef(null);
+    const [currentSorting, setCurrentSorting] = useState("default");
 
     const handleStatusChange = (event) => {
-        setSelectedStatus(event.target.value);
+        const newStatus = event.target.value;
+        setSelectedStatus(newStatus);
+        setPage(1);
+        setCards([]);
     };
 
     const handleSortingChange = (event) => {
-        const selectedOptions = Array.from(
-            event.target.selectedOptions,
-            (option) => option.value
-        );
+        const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
         setSelectedSortings(selectedOptions);
     };
-
+    
     useEffect(() => {
         const fetchCards = async () => {
             try {
-                let apiUrl = `http://localhost:3001/cards?_page=${page}&_limit=12`;
-
+                let apiUrl = "http://localhost:3001/cards";
                 if (selectedStatus !== "All status") {
-                    apiUrl += `&status=${selectedStatus}`;
+                    apiUrl += `?status=${selectedStatus}`;
                 }
 
                 const response = await axios.get(apiUrl);
-                const newCards = response.data;
 
-                setCards((prevCards) => [...prevCards, ...newCards]);
-                setLoading(false);
+                let sortedCards = response.data;
+
+                // Sorting based on selected options
+                selectedSortings.forEach((sortingOption) => {
+                    switch (sortingOption) {
+                        case "frontTextAZ":
+                            sortedCards = sortedCards.sort((a, b) => a.frontText.localeCompare(b.frontText));
+                            break;
+                        case "frontTextZA":
+                            sortedCards = sortedCards.sort((a, b) => b.frontText.localeCompare(a.frontText));
+                            break;
+                        case "backAnswerAZ":
+                            sortedCards = sortedCards.sort((a, b) => a.backAnswer.localeCompare(b.backAnswer));
+                            break;
+                        case "backAnswerZA":
+                            sortedCards = sortedCards.sort((a, b) => b.backAnswer.localeCompare(a.backAnswer));
+                            break;
+                        default:
+                            break;
+                    }
+                });
+
+                setCards(sortedCards);
             } catch (error) {
                 console.error("Error fetching cards:", error);
             }
         };
 
         fetchCards();
-    }, [page, selectedStatus]);
+    }, [selectedStatus, selectedSortings]);
+    
+
+    useEffect(() => {
+        const fetchInitialCards = async () => {
+            try {
+                let apiUrl = `http://localhost:3001/cards?_page=1&_limit=50`; // Increase the limit
+        
+                if (selectedStatus !== "All status") {
+                    apiUrl += `&status=${selectedStatus}`;
+                }
+        
+                const response = await axios.get(apiUrl);
+                const initialCards = response.data;
+        
+                initialCards.sort((a, b) => {
+                    const dateA = new Date(a.lastModificationDateTime);
+                    const dateB = new Date(b.lastModificationDateTime);
+        
+                    if (dateA.getFullYear() !== dateB.getFullYear()) {
+                        return dateB.getFullYear() - dateA.getFullYear();
+                    }
+        
+                    if (dateA.getMonth() !== dateB.getMonth()) {
+                        return dateB.getMonth() - dateA.getMonth();
+                    }
+        
+                    return dateB.getDate() - dateA.getDate();
+                });
+        
+                setCards(initialCards);
+            } catch (error) {
+                console.error("Error fetching initial cards:", error);
+            }
+        };        
+    
+        fetchInitialCards();
+    }, [selectedStatus]);
+    
 
     const handleDelete = async (id) => {
         try {
@@ -69,15 +125,23 @@ const Cards = () => {
 
     const handleCreate = async (newCard) => {
         try {
-            const currentDateTime = new Date().toLocaleString();
-
+            const currentDateTime = new Date().toLocaleDateString();
+    
             newCard.lastModificationDateTime = currentDateTime;
             newCard.status = "Want to Learn";
-
-            setCards((prevCards) => [...prevCards, newCard]);
-
+    
+            setCards((prevCards) => {
+                const updatedCards = [...prevCards, newCard];
+                
+                const sortedCards = updatedCards.sort((a, b) => {
+                    return new Date(b.lastModificationDateTime) - new Date(a.lastModificationDateTime);
+                });
+    
+                return sortedCards;
+            });
+    
             await axios.post("http://localhost:3001/cards", newCard);
-
+    
             setIsCreateModalOpen(false);
         } catch (error) {
             console.error("Error creating card:", error);
@@ -98,25 +162,6 @@ const Cards = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchInitialCards = async () => {
-            try {
-                const apiUrl = `http://localhost:3001/cards?_page=1&_limit=12`;
-
-                if (selectedStatus !== "All status") {
-                    apiUrl += `&status=${selectedStatus}`;
-                }
-
-                const response = await axios.get(apiUrl);
-                setCards(response.data);
-            } catch (error) {
-                console.error("Error fetching initial cards:", error);
-            }
-        };
-
-        fetchInitialCards();
-    }, [selectedStatus]);
-
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
     };
@@ -136,23 +181,6 @@ const Cards = () => {
     const filteredCards = cards.filter((card) =>
         card.frontText.toLowerCase().includes(searchInput.toLowerCase())
     );
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-            if (entries[0].isIntersecting && !loading) {
-                setLoading(true);
-                setPage((prevPage) => prevPage + 1);
-            }
-        },
-        { threshold: 0.1 }
-    );
-
-    useEffect(() => {
-        observer.observe(endOfCardsRef.current);
-        return () => {
-            observer.disconnect();
-        };
-    }, [observer]);
 
     return (
         <div>
@@ -184,6 +212,7 @@ const Cards = () => {
                             onChange={handleSortingChange}
                             multiple
                         >
+                            <option value="default">Choose sorting option...</option>
                             <option value="frontTextAZ">Sort frontText A-Z</option>
                             <option value="frontTextZA">Sort frontText Z-A</option>
                             <option value="backAnswerAZ">Sort backAnswer A-Z</option>
@@ -203,8 +232,6 @@ const Cards = () => {
                             onUpdate={handleUpdate}
                         />
                     ))}
-                    <div ref={endOfCardsRef}></div>
-                    {loading && <p className="loading-message">Loading more cards...</p>}
                 </div>
             </div>
             {isCreateModalOpen && (
