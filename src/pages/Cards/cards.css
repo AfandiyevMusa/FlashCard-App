@@ -1,5 +1,5 @@
 .cards-location {
-  max-width: 1800px;
+  max-width: 1600px;
   margin: auto;
   padding: 20px;
 }
@@ -7,6 +7,7 @@
 .flashcard-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .creating {

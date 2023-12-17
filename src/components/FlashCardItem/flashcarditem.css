@@ -5,7 +5,9 @@
     cursor: pointer;
     position: relative;
     margin-bottom: 50px;
-    padding-right: 50px;
+    padding-right: 60px;
+    margin-left: 50px;
+    position: relative;
   }
   
   .flipper {
@@ -16,7 +18,6 @@
     transform: rotateY(0deg);
     transform-origin: center;
   }
-  
   
   .flashcard-item.flipped .flipper {
     transform: rotateY(180deg);
@@ -110,4 +111,38 @@
 
 .hidden {
   display: none;
+}
+
+
+.checkbox-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.checkbox:checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.checkbox-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }

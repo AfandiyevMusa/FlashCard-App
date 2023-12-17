@@ -12,6 +12,7 @@ import "./cards.css";
 
 const Cards = () => {
     const [cards, setCards] = useState([]);
+    const [selectedCards, setSelectedCards] = useState([]);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [updateCard, setUpdateCard] = useState(null);
@@ -21,6 +22,30 @@ const Cards = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const notify = useCallback((message) => toast.success(message), []);
+
+    const handleSelectCard = (cardId) => {
+        // Toggle the selection status of the card
+        setSelectedCards((prevSelected) =>
+            prevSelected.includes(cardId)
+                ? prevSelected.filter((id) => id !== cardId)
+                : [...prevSelected, cardId]
+        );
+    };
+
+    const handleShare = () => {
+        // Gather details of selected cards
+        const selectedCardDetails = cards
+            .filter((card) => selectedCards.includes(card.id))
+            .map(({ id, frontText, backAnswer }) => ({ id, frontText, backAnswer }));
+
+        // Convert selected card details to JSON
+        const jsonData = JSON.stringify(selectedCardDetails, null, 2);
+
+        // TODO: Integrate with an email sending service or use a mailto link
+        // For simplicity, let's open the default email client with mailto link
+        const mailtoLink = `mailto:?subject=Flash Cards&body=${encodeURIComponent(jsonData)}`;
+        window.location.href = mailtoLink;
+    };
 
     const handleStatusChange = (event) => {
         const newStatus = event.target.value;
@@ -201,6 +226,11 @@ const Cards = () => {
             <Navbar />
             <Notification notify={notify} />
             <div className="cards-location">
+                <div className="share-section">
+                    <button className="share-btn btn btn" onClick={handleShare}>
+                        Share Selected Cards
+                    </button>
+                </div>
                 <div className="creating">
                     <h1>Flash Cards</h1>
                     <form id="operations">
@@ -253,6 +283,8 @@ const Cards = () => {
                             card={card}
                             onDelete={handleDelete}
                             onUpdate={handleUpdate}
+                            onSelect={handleSelectCard}
+                            isSelected={selectedCards.includes(card.id)}
                         />
                     ))}
                 </div>

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import "./flashcarditem.css";
 
-const FlashCardItem = ({ card, onDelete, onUpdate }) => {
+const FlashCardItem = ({ card, onDelete, onUpdate, onSelect, isSelected }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
     };
 
-    console.log("lastModificationDateTime:", card.lastModificationDateTime); // Add this line
-
     return (
         <div className={`flashcard-item ${isFlipped ? "flipped" : ""}`} onClick={handleFlip}>
+            <div className="checkbox-container">
+                <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={isSelected}
+                    onChange={() => onSelect(card.id)}
+                />
+                <div className="checkbox-icon">&#10003;</div>
+            </div>
             <div className="flipper">
                 <div className="front">
                     <h3 className="frontTxt">{card.frontText}</h3>
