@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import FlashCardItem from "../../components/FlashCardItem/index";
 import Navbar from "../../components/Navbar/index";
 import CreateCardModal from "../../components/CreateCardModal/index";
 import UpdateCardModal from "../../components/UpdateCardModal/index";
+import Notification from "../../components/Notification/notification";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import TablePagination from "@mui/material/TablePagination";
 import "./cards.css";
 
 const Cards = () => {
@@ -14,13 +18,13 @@ const Cards = () => {
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
     const [selectedSortings, setSelectedSortings] = useState([]);
-    const [page, setPage] = useState(1);
-    const [currentSorting, setCurrentSorting] = useState("default");
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const notify = useCallback((message) => toast.success(message), []);
 
     const handleStatusChange = (event) => {
         const newStatus = event.target.value;
         setSelectedStatus(newStatus);
-        setPage(1);
         setCards([]);
     };
 
@@ -28,7 +32,16 @@ const Cards = () => {
         const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
         setSelectedSortings(selectedOptions);
     };
-    
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     useEffect(() => {
         const fetchCards = async () => {
             try {
@@ -41,7 +54,6 @@ const Cards = () => {
 
                 let sortedCards = response.data;
 
-                // Sorting based on selected options
                 selectedSortings.forEach((sortingOption) => {
                     switch (sortingOption) {
                         case "frontTextAZ":
@@ -68,50 +80,49 @@ const Cards = () => {
         };
 
         fetchCards();
-    }, [selectedStatus, selectedSortings]);
-    
+    }, [selectedStatus, selectedSortings, page, rowsPerPage]);
 
     useEffect(() => {
         const fetchInitialCards = async () => {
             try {
-                let apiUrl = `http://localhost:3001/cards?_page=1&_limit=50`; // Increase the limit
-        
+                let apiUrl = `http://localhost:3001/cards?_page=${page + 1}&_limit=${rowsPerPage}`;
+
                 if (selectedStatus !== "All status") {
                     apiUrl += `&status=${selectedStatus}`;
                 }
-        
+
                 const response = await axios.get(apiUrl);
                 const initialCards = response.data;
-        
+
                 initialCards.sort((a, b) => {
                     const dateA = new Date(a.lastModificationDateTime);
                     const dateB = new Date(b.lastModificationDateTime);
-        
+
                     if (dateA.getFullYear() !== dateB.getFullYear()) {
                         return dateB.getFullYear() - dateA.getFullYear();
                     }
-        
+
                     if (dateA.getMonth() !== dateB.getMonth()) {
                         return dateB.getMonth() - dateA.getMonth();
                     }
-        
+
                     return dateB.getDate() - dateA.getDate();
                 });
-        
+
                 setCards(initialCards);
             } catch (error) {
                 console.error("Error fetching initial cards:", error);
             }
-        };        
-    
+        };
+
         fetchInitialCards();
-    }, [selectedStatus]);
-    
+    }, [selectedStatus, page, rowsPerPage]);
 
     const handleDelete = async (id) => {
         try {
             setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
+            notify("Card deleted successfully!");
             await axios.delete(`http://localhost:3001/cards/${id}`);
         } catch (error) {
             console.error("Error deleting card:", error);
@@ -126,22 +137,24 @@ const Cards = () => {
     const handleCreate = async (newCard) => {
         try {
             const currentDateTime = new Date().toLocaleDateString();
-    
+
             newCard.lastModificationDateTime = currentDateTime;
             newCard.status = "Want to Learn";
-    
+
             setCards((prevCards) => {
                 const updatedCards = [...prevCards, newCard];
-                
+
                 const sortedCards = updatedCards.sort((a, b) => {
                     return new Date(b.lastModificationDateTime) - new Date(a.lastModificationDateTime);
                 });
-    
+
                 return sortedCards;
             });
-    
+
             await axios.post("http://localhost:3001/cards", newCard);
-    
+
+            notify("Card created successfully!");
+
             setIsCreateModalOpen(false);
         } catch (error) {
             console.error("Error creating card:", error);
@@ -156,6 +169,7 @@ const Cards = () => {
 
             await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
 
+            notify("Card updated successfully!");
             setIsUpdateModalOpen(false);
         } catch (error) {
             console.error("Error updating card:", error);
@@ -185,6 +199,7 @@ const Cards = () => {
     return (
         <div>
             <Navbar />
+            <Notification notify={notify} />
             <div className="cards-location">
                 <div className="creating">
                     <h1>Flash Cards</h1>
@@ -223,6 +238,14 @@ const Cards = () => {
                         Create
                     </button>
                 </div>
+                <TablePagination
+                    component="div"
+                    count={100}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
                 <div className="flashcard-list">
                     {filteredCards.map((card, index) => (
                         <FlashCardItem
@@ -247,6 +270,7 @@ const Cards = () => {
             )}
         </div>
     );
+
 };
 
 export default Cards;

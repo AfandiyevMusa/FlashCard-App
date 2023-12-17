@@ -3,7 +3,6 @@ import Home from './pages/Home/index';
 import Cards from './pages/Cards/index';
 import ContactPage from './pages/ContactPage/index';
 import Messages from './pages/Messages/index';
-import Navbar from './components/Navbar/index';
 
 function App() {
   return (

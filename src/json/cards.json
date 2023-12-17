@@ -197,13 +197,6 @@
       "status": "Want to Learn"
     },
     {
-      "id": 40,
-      "frontText": "What is the boiling point of ethanol?",
-      "backAnswer": "The boiling point of ethanol is 78.37 degrees Celsius (173.07 degrees Fahrenheit).",
-      "lastModificationDateTime": "12/16/2021",
-      "status": "Want to Learn"
-    },
-    {
       "id": 41,
       "frontText": "Who invented the telephone?",
       "backAnswer": "Alexander Graham Bell invented the telephone.",
@@ -617,25 +610,11 @@
       "id": 101
     },
     {
-      "frontText": "Secondd",
-      "backAnswer": "scxbvxcv",
-      "lastModificationDateTime": "12/20/2023",
+      "frontText": "New Card",
+      "backAnswer": "sdfsdf",
+      "lastModificationDateTime": "12/18/2023",
       "status": "Want to Learn",
       "id": 102
-    },
-    {
-      "frontText": "AAA",
-      "backAnswer": "Hello",
-      "lastModificationDateTime": "12/18/2023",
-      "status": "Want to Learn",
-      "id": 103
-    },
-    {
-      "frontText": "BBB",
-      "backAnswer": "sdf",
-      "lastModificationDateTime": "12/18/2023",
-      "status": "Want to Learn",
-      "id": 104
     }
   ],
   "messages": [
