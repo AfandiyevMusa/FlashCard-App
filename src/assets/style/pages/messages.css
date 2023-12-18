@@ -9,11 +9,9 @@
     gap: 20px;
   }
   
-  /* Optional: Style for individual messages in the list */
   .message-item {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 8px;
     background-color: #f9f9f9;
   }
-  

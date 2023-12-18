@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./navbar.css";
+import "../assets/style/components/navbar.css";
 
 function Navbar() {
     return (
@@ -9,6 +9,7 @@ function Navbar() {
                 <Link to="/">Flashcard App</Link>
             </div>
             <div className="options">
+                <Link to="/">Home</Link>
                 <Link to="/cards">Cards</Link>
                 <Link to="/contactpage">Contact Me</Link>
                 <Link to="/messages">Messages</Link>

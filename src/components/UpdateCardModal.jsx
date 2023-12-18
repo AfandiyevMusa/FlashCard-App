@@ -1,7 +1,5 @@
-// updatecardmodal.jsx
-
 import React, { useState } from "react";
-import './updatecardmodal.css';
+import "../assets/style/components/updatecardmodal.css";
 
 const UpdateCardModal = ({ card, onUpdate, onClose }) => {
     const [frontText, setFrontText] = useState(card.frontText);

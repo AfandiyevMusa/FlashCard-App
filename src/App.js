@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/index';
-import Cards from './pages/Cards/index';
-import ContactPage from './pages/ContactPage/index';
-import Messages from './pages/Messages/index';
+import Home from './pages/Home.jsx';
+import Cards from './pages/Cards.jsx';
+import ContactPage from './pages/ContactPage.jsx';
+import Messages from './pages/Messages.jsx';
 
 function App() {
   return (

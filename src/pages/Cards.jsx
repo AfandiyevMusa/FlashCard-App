@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import FlashCardItem from "../../components/FlashCardItem/index";
-import Navbar from "../../components/Navbar/index";
-import CreateCardModal from "../../components/CreateCardModal/index";
-import UpdateCardModal from "../../components/UpdateCardModal/index";
-import Notification from "../../components/Notification/notification";
+import FlashCardItem from "../components/FlashCardItem.jsx";
+import Navbar from "../components/Navbar.jsx";
+import CreateCardModal from "../components/CreateCardModal.jsx";
+import UpdateCardModal from "../components/UpdateCardModal.jsx";
+import Notification from "../components/Notification.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TablePagination from "@mui/material/TablePagination";
-import "./cards.css";
+import "../assets/style/pages/cards.css";
 
 const Cards = () => {
     const [cards, setCards] = useState([]);

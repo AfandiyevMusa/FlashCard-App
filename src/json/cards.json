@@ -79,9 +79,9 @@
     },
     {
       "id": 15,
-      "frontText": "Who discovered penicillin?",
+      "frontText": "Who discovered penicillin??",
       "backAnswer": "Alexander Fleming discovered penicillin.",
-      "lastModificationDateTime": "12/06/2023",
+      "lastModificationDateTime": "12/18/2023, 11:43:04 PM",
       "status": "Want to Learn"
     },
     {
@@ -617,6 +617,38 @@
       "id": 102
     }
   ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Project 1: CompanyApp",
+      "description": "It is a console application for some company that I have finished in C#.",
+      "link": "https://github.com/AfandiyevMusa/CompanyApp"
+    },
+    {
+      "id": 2,
+      "title": "Project 2: MollaFront",
+      "description": "It is my first full front-end project. I have written evertything in detail, even wishlist and shop logic with the help of localstorage.",
+      "link": "https://github.com/AfandiyevMusa/Molla-Front-Layihe"
+    },
+    {
+      "id": 3,
+      "title": "Project 3: Greeny_Backend",
+      "description": "It is my first backend project. It is written in MVC. And I have used ASP.NET, as a language C#.",
+      "link": "https://github.com/AfandiyevMusa/Greeny_Backend"
+    },
+    {
+      "id": 4,
+      "title": "Project 4: Movflx-Backend",
+      "description": "It is my another backend project.",
+      "link": "https://github.com/AfandiyevMusa/Movflx-Backend"
+    },
+    {
+      "id": 5,
+      "title": "Project 5: Bookstore",
+      "description": "It is bookstore console application. For backend I have used Java, as a database I have used PostgreSQL.",
+      "link": "https://github.com/AfandiyevMusa/Db_Assignment2"
+    }
+  ],
   "messages": [
     {
       "subject": "Hello",
@@ -624,6 +656,13 @@
       "content": "Hiii",
       "date": 1702278439514,
       "id": 5
+    },
+    {
+      "name": "hello",
+      "email": "world@gmail.com",
+      "message": "sdjkf",
+      "createdDate": "12/18/2023, 9:03:24 AM",
+      "id": 6
     }
   ]
 }

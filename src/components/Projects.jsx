@@ -1,7 +1,5 @@
-// src/components/ProjectsSection/index.jsx
-
 import React from "react";
-import "./projects.css";
+import "../assets/style/components/projects.css";
 
 const ProjectsSection = ({ projects }) => {
     return (

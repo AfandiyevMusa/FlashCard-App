@@ -1,5 +1,5 @@
 import React from "react";
-import "./messageitem.css";
+import "../assets/style/components/messageitem.css";
 
 const MessageItem = ({ message, onDelete }) => {
     const formattedDate = message.createdDate
