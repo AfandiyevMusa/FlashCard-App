@@ -674,11 +674,11 @@
     },
     {
       "id": 99,
-      "frontText": "Who discovered the structure of DNA?",
+      "frontText": "Who discovered the structure of DNA???",
       "image": "",
       "backAnswer": "James Watson and Francis Crick discovered the structure of DNA.",
-      "lastModificationDateTime": "12/16/2018",
-      "status": "Want to Learn"
+      "lastModificationDateTime": "12/21/2023, 11:50:23 AM",
+      "status": "Mark as Noted"
     },
     {
       "id": 100,
@@ -687,30 +687,6 @@
       "backAnswer": "Greenland is the largest island in the world.",
       "lastModificationDateTime": "12/16/2016",
       "status": "Want to Learn"
-    },
-    {
-      "frontText": "First Try",
-      "image": "",
-      "backAnswer": "scxbvxcv",
-      "lastModificationDateTime": "12/18/2023",
-      "status": "Want to Learn",
-      "id": 101
-    },
-    {
-      "frontText": "New Card",
-      "image": "",
-      "backAnswer": "sdfsdf",
-      "lastModificationDateTime": "12/18/2023",
-      "status": "Want to Learn",
-      "id": 102
-    },
-    {
-      "frontText": "",
-      "backAnswer": "Musa",
-      "image": "blob:http://localhost:3000/a8a4f65c-59e9-4dda-8eca-e3ea70a53630",
-      "status": "Want to Learn",
-      "lastModificationDateTime": "12/21/2023",
-      "id": 103
     }
   ],
   "projects": [

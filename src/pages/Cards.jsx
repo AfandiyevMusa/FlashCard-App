@@ -17,7 +17,7 @@ const Cards = () => {
     const [updateCard, setUpdateCard] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
-    const [selectedSortings, setSelectedSortings] = useState([]);
+    const [selectedSortings, setSelectedSortings] = useState(["idDescending"]); // Default sorting option
     const notify = useCallback((message) => toast.success(message), []);
 
     const handleSelectCard = (cardId) => {
@@ -76,6 +76,9 @@ const Cards = () => {
                         case "backAnswerZA":
                             sortedCards = sortedCards.sort((a, b) => b.backAnswer.localeCompare(a.backAnswer));
                             break;
+                        case "idDescending":
+                            sortedCards = sortedCards.sort((a, b) => b.id - a.id);
+                            break;
                         default:
                             break;
                     }
@@ -87,31 +90,6 @@ const Cards = () => {
             }
         };
 
-        fetchCards();
-    }, [selectedStatus, selectedSortings]);
-
-    useEffect(() => {
-        const fetchCards = async () => {
-            try {
-                let apiUrl = "http://localhost:3001/cards";
-                if (selectedStatus !== "All status") {
-                    apiUrl += `?status=${selectedStatus}`;
-                }
-    
-                const response = await axios.get(apiUrl);
-    
-                let sortedCards = response.data;
-    
-                selectedSortings.forEach((sortingOption) => {
-                    // ... (existing sorting logic)
-                });
-    
-                setCards(sortedCards);
-            } catch (error) {
-                console.error("Error fetching cards:", error);
-            }
-        };
-    
         fetchCards();
     }, [selectedStatus, selectedSortings]);
 
@@ -127,7 +105,6 @@ const Cards = () => {
     };
 
     const handleUpdate = (card) => {
-        setUpdateCard(card);
         setIsUpdateModalOpen(true);
     };
 
@@ -160,6 +137,7 @@ const Cards = () => {
 
     const handleUpdateCard = async (updatedCard) => {
         try {
+            updateCard.stopPropagation();
             setCards((prevCards) =>
                 prevCards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
             );
@@ -227,7 +205,6 @@ const Cards = () => {
                             name="sortOrder"
                             value={selectedSortings}
                             onChange={handleSortingChange}
-                            multiple
                         >
                             <option value="default">Choose sorting option...</option>
                             <option value="frontTextAZ">Sort frontText A-Z</option>

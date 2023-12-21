@@ -33,13 +33,23 @@
 }
 
 #filterstatus {
-  margin-right: 100px;
+  margin-right: 50px;
   padding: 15px;
   margin-bottom: 10px;
 }
 
-.search {
+#sortOrder {
+  margin-left: 50px;
+  /* margin-left: 50px; */
+  margin-bottom: 10px;
   padding: 15px;
+  
+}
+
+.search {
+  margin-top: 10px;
+  padding: 15px;
+  padding-right: 100px;
   width: 300px;
 }
 
@@ -53,10 +63,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#sortOrder {
-  margin-left: 50px;
-  margin-bottom: 10px;
-  padding: 10px;
 }
