@@ -3,6 +3,7 @@
     {
       "id": 4,
       "frontText": "What is the capital of Australia?",
+      "image": "",
       "backAnswer": "Canberra is the capital of Australia.",
       "lastModificationDateTime": "12/16/2023",
       "status": "Mark as Noted"
@@ -10,6 +11,7 @@
     {
       "id": 5,
       "frontText": "Who wrote 'The Great Gatsby'?",
+      "image": "",
       "backAnswer": "F. Scott Fitzgerald wrote 'The Great Gatsby'.",
       "lastModificationDateTime": "12/16/2023",
       "status": "Mark as Noted"
@@ -17,6 +19,7 @@
     {
       "id": 6,
       "frontText": "What is the currency of China?",
+      "image": "",
       "backAnswer": "The currency of China is the Renminbi (Yuan).",
       "lastModificationDateTime": "12/15/2023",
       "status": "Mark as Noted"
@@ -24,6 +27,7 @@
     {
       "id": 7,
       "frontText": "Name two famous scientists in history.",
+      "image": "",
       "backAnswer": "Isaac Newton and Albert Einstein are two famous scientists in history.",
       "lastModificationDateTime": "12/14/2023",
       "status": "Want to Learn"
@@ -31,6 +35,7 @@
     {
       "id": 8,
       "frontText": "What is the capital of France?",
+      "image": "",
       "backAnswer": "Paris is the capital of France.",
       "lastModificationDateTime": "12/13/2023",
       "status": "Want to Learn"
@@ -38,6 +43,7 @@
     {
       "id": 9,
       "frontText": "Who directed the movie 'Inception'?",
+      "image": "",
       "backAnswer": "Christopher Nolan directed the movie 'Inception'.",
       "lastModificationDateTime": "12/12/2023",
       "status": "Want to Learn"
@@ -45,6 +51,7 @@
     {
       "id": 10,
       "frontText": "What is the boiling point of water?",
+      "image": "",
       "backAnswer": "The boiling point of water is 100 degrees Celsius (212 degrees Fahrenheit).",
       "lastModificationDateTime": "12/11/2023",
       "status": "Want to Learn"
@@ -52,6 +59,7 @@
     {
       "id": 11,
       "frontText": "Who is the author of 'The Catcher in the Rye'?",
+      "image": "",
       "backAnswer": "J.D. Salinger is the author of 'The Catcher in the Rye'.",
       "lastModificationDateTime": "12/10/2023",
       "status": "Want to Learn"
@@ -59,6 +67,7 @@
     {
       "id": 12,
       "frontText": "What is the largest planet in our solar system?",
+      "image": "",
       "backAnswer": "Jupiter is the largest planet in our solar system.",
       "lastModificationDateTime": "12/09/2023",
       "status": "Want to Learn"
@@ -66,6 +75,7 @@
     {
       "id": 13,
       "frontText": "Who composed 'The Four Seasons'?",
+      "image": "",
       "backAnswer": "Antonio Vivaldi composed 'The Four Seasons'.",
       "lastModificationDateTime": "12/08/2023",
       "status": "Want to Learn"
@@ -73,6 +83,7 @@
     {
       "id": 14,
       "frontText": "What is the smallest prime number?",
+      "image": "",
       "backAnswer": "The smallest prime number is 2.",
       "lastModificationDateTime": "12/07/2023",
       "status": "Mark as Noted"
@@ -80,6 +91,7 @@
     {
       "id": 15,
       "frontText": "Who discovered penicillin??",
+      "image": "",
       "backAnswer": "Alexander Fleming discovered penicillin.",
       "lastModificationDateTime": "12/18/2023, 11:43:04 PM",
       "status": "Want to Learn"
@@ -87,6 +99,7 @@
     {
       "id": 16,
       "frontText": "What is the speed of sound in air?",
+      "image": "",
       "backAnswer": "The speed of sound in air is approximately 343 meters per second.",
       "lastModificationDateTime": "12/05/2023",
       "status": "Want to Learn"
@@ -94,6 +107,7 @@
     {
       "id": 17,
       "frontText": "Who painted the 'Mona Lisa'?",
+      "image": "",
       "backAnswer": "Leonardo da Vinci painted the 'Mona Lisa'.",
       "lastModificationDateTime": "12/04/2023",
       "status": "Want to Learn"
@@ -101,6 +115,7 @@
     {
       "id": 18,
       "frontText": "What is the capital of South Africa?",
+      "image": "",
       "backAnswer": "Pretoria is one of the three capital cities of South Africa.",
       "lastModificationDateTime": "12/03/2023",
       "status": "Want to Learn"
@@ -108,6 +123,7 @@
     {
       "id": 19,
       "frontText": "Who discovered electricity?",
+      "image": "",
       "backAnswer": "Benjamin Franklin is credited with discovering electricity.",
       "lastModificationDateTime": "12/02/2023",
       "status": "Want to Learn"
@@ -115,6 +131,7 @@
     {
       "id": 20,
       "frontText": "What is the chemical symbol for gold?",
+      "image": "",
       "backAnswer": "The chemical symbol for gold is Au.",
       "lastModificationDateTime": "11/16/2023",
       "status": "Want to Learn"
@@ -122,6 +139,7 @@
     {
       "id": 21,
       "frontText": "Who is the author of 'Pride and Prejudice'?",
+      "image": "",
       "backAnswer": "Jane Austen is the author of 'Pride and Prejudice'.",
       "lastModificationDateTime": "10/16/2023",
       "status": "Want to Learn"
@@ -129,6 +147,7 @@
     {
       "id": 22,
       "frontText": "What is the largest ocean on Earth?",
+      "image": "",
       "backAnswer": "The Pacific Ocean is the largest ocean on Earth.",
       "lastModificationDateTime": "09/16/2023",
       "status": "Want to Learn"
@@ -136,6 +155,7 @@
     {
       "id": 23,
       "frontText": "Who founded Facebook?",
+      "image": "",
       "backAnswer": "Mark Zuckerberg founded Facebook.",
       "lastModificationDateTime": "12/11/2023",
       "status": "Want to Learn"
@@ -143,6 +163,7 @@
     {
       "id": 24,
       "frontText": "What is the melting point of ice?",
+      "image": "",
       "backAnswer": "The melting point of ice is 0 degrees Celsius (32 degrees Fahrenheit).",
       "lastModificationDateTime": "12/10/2023",
       "status": "Want to Learn"
@@ -150,6 +171,7 @@
     {
       "id": 25,
       "frontText": "Who is the lead singer of the band Queen?",
+      "image": "",
       "backAnswer": "Freddie Mercury was the lead singer of the band Queen.",
       "lastModificationDateTime": "12/03/2023",
       "status": "Want to Learn"
@@ -157,6 +179,7 @@
     {
       "id": 26,
       "frontText": "What is the capital of Canada?",
+      "image": "",
       "backAnswer": "Ottawa is the capital of Canada.",
       "lastModificationDateTime": "05/16/2023",
       "status": "Want to Learn"
@@ -164,6 +187,7 @@
     {
       "id": 27,
       "frontText": "Who discovered penicillin?",
+      "image": "",
       "backAnswer": "Alexander Fleming discovered penicillin.",
       "lastModificationDateTime": "12/11/2023",
       "status": "Want to Learn"
@@ -171,6 +195,7 @@
     {
       "id": 28,
       "frontText": "What is the largest mammal on Earth?",
+      "image": "",
       "backAnswer": "The blue whale is the largest mammal on Earth.",
       "lastModificationDateTime": "12/12/2023",
       "status": "Want to Learn"
@@ -178,6 +203,7 @@
     {
       "id": 37,
       "frontText": "Who wrote 'The Odyssey'?",
+      "image": "",
       "backAnswer": "Homer is the author of 'The Odyssey'.",
       "lastModificationDateTime": "10/12/2023",
       "status": "Want to Learn"
@@ -185,6 +211,7 @@
     {
       "id": 38,
       "frontText": "What is the largest continent on Earth?",
+      "image": "",
       "backAnswer": "Asia is the largest continent on Earth.",
       "lastModificationDateTime": "03/16/2023",
       "status": "Want to Learn"
@@ -192,6 +219,7 @@
     {
       "id": 39,
       "frontText": "Who is the current President of the United States?",
+      "image": "",
       "backAnswer": "As of the last update, the current President of the United States is Joe Biden.",
       "lastModificationDateTime": "12/16/2022",
       "status": "Want to Learn"
@@ -199,6 +227,7 @@
     {
       "id": 41,
       "frontText": "Who invented the telephone?",
+      "image": "",
       "backAnswer": "Alexander Graham Bell invented the telephone.",
       "lastModificationDateTime": "12/15/2023",
       "status": "Want to Learn"
@@ -206,6 +235,7 @@
     {
       "id": 42,
       "frontText": "What is the capital of Russia?",
+      "image": "",
       "backAnswer": "Moscow is the capital of Russia.",
       "lastModificationDateTime": "12/14/2023",
       "status": "Want to Learn"
@@ -213,6 +243,7 @@
     {
       "id": 44,
       "frontText": "What is the largest bird in the world?",
+      "image": "",
       "backAnswer": "The ostrich is the largest bird in the world.",
       "lastModificationDateTime": "12/17/2023",
       "status": "Want to Learn"
@@ -220,6 +251,7 @@
     {
       "id": 45,
       "frontText": "Who is the author of 'The Lord of the Rings'?",
+      "image": "",
       "backAnswer": "J.R.R. Tolkien is the author of 'The Lord of the Rings'.",
       "lastModificationDateTime": "02/16/2023",
       "status": "Want to Learn"
@@ -227,6 +259,7 @@
     {
       "id": 46,
       "frontText": "What is the smallest country in the world?",
+      "image": "",
       "backAnswer": "Vatican City is the smallest country in the world.",
       "lastModificationDateTime": "01/16/2023",
       "status": "Want to Learn"
@@ -234,6 +267,7 @@
     {
       "id": 47,
       "frontText": "Who discovered the laws of motion?",
+      "image": "",
       "backAnswer": "Sir Isaac Newton discovered the laws of motion.",
       "lastModificationDateTime": "09/11/2023",
       "status": "Want to Learn"
@@ -241,6 +275,7 @@
     {
       "id": 48,
       "frontText": "What is the capital of Argentina?",
+      "image": "",
       "backAnswer": "Buenos Aires is the capital of Argentina.",
       "lastModificationDateTime": "12/17/2023",
       "status": "Want to Learn"
@@ -248,6 +283,7 @@
     {
       "id": 49,
       "frontText": "Who painted 'The Starry Night'?",
+      "image": "",
       "backAnswer": "Vincent van Gogh painted 'The Starry Night'.",
       "lastModificationDateTime": "12/09/2023",
       "status": "Want to Learn"
@@ -255,6 +291,7 @@
     {
       "id": 50,
       "frontText": "What is the largest desert in the world?",
+      "image": "",
       "backAnswer": "Antarctica is the largest desert in the world.",
       "lastModificationDateTime": "12/12/2023",
       "status": "Want to Learn"
@@ -262,6 +299,7 @@
     {
       "id": 51,
       "frontText": "Who wrote 'The Hound of the Baskervilles'?",
+      "image": "",
       "backAnswer": "Sir Arthur Conan Doyle wrote 'The Hound of the Baskervilles'.",
       "lastModificationDateTime": "12/14/2023",
       "status": "Want to Learn"
@@ -269,6 +307,7 @@
     {
       "id": 52,
       "frontText": "What is the freezing point of water?",
+      "image": "",
       "backAnswer": "The freezing point of water is 0 degrees Celsius (32 degrees Fahrenheit).",
       "lastModificationDateTime": "08/12/2023",
       "status": "Want to Learn"
@@ -276,6 +315,7 @@
     {
       "id": 53,
       "frontText": "Who is the Greek god of thunder?",
+      "image": "",
       "backAnswer": "Zeus is the Greek god of thunder.",
       "lastModificationDateTime": "10/14/2023",
       "status": "Want to Learn"
@@ -283,6 +323,7 @@
     {
       "id": 54,
       "frontText": "What is the largest moon in our solar system?",
+      "image": "",
       "backAnswer": "Ganymede is the largest moon in our solar system.",
       "lastModificationDateTime": "11/06/2023",
       "status": "Want to Learn"
@@ -290,6 +331,7 @@
     {
       "id": 55,
       "frontText": "Who is the author of 'Frankenstein'?",
+      "image": "",
       "backAnswer": "Mary Shelley is the author of 'Frankenstein'.",
       "lastModificationDateTime": "10/12/2023",
       "status": "Want to Learn"
@@ -297,6 +339,7 @@
     {
       "id": 56,
       "frontText": "What is the capital of Spain?",
+      "image": "",
       "backAnswer": "Madrid is the capital of Spain.",
       "lastModificationDateTime": "12/16/2022",
       "status": "Want to Learn"
@@ -304,6 +347,7 @@
     {
       "id": 57,
       "frontText": "Who painted 'The Last Supper'?",
+      "image": "",
       "backAnswer": "Leonardo da Vinci painted 'The Last Supper'.",
       "lastModificationDateTime": "12/15/2022",
       "status": "Want to Learn"
@@ -311,6 +355,7 @@
     {
       "id": 58,
       "frontText": "What is the capital of Mexico?",
+      "image": "",
       "backAnswer": "Mexico City is the capital of Mexico.",
       "lastModificationDateTime": "12/25/2022",
       "status": "Want to Learn"
@@ -318,6 +363,7 @@
     {
       "id": 59,
       "frontText": "Who is the Norse god of mischief?",
+      "image": "",
       "backAnswer": "Loki is the Norse god of mischief.",
       "lastModificationDateTime": "12/24/2022",
       "status": "Want to Learn"
@@ -325,6 +371,7 @@
     {
       "id": 60,
       "frontText": "What is the currency of South Korea?",
+      "image": "",
       "backAnswer": "The currency of South Korea is the Korean Won.",
       "lastModificationDateTime": "12/23/2022",
       "status": "Want to Learn"
@@ -332,6 +379,7 @@
     {
       "id": 61,
       "frontText": "Who wrote 'The Canterbury Tales'?",
+      "image": "",
       "backAnswer": "Geoffrey Chaucer wrote 'The Canterbury Tales'.",
       "lastModificationDateTime": "12/22/2022",
       "status": "Want to Learn"
@@ -339,6 +387,7 @@
     {
       "id": 62,
       "frontText": "What is the largest carnivorous dinosaur?",
+      "image": "",
       "backAnswer": "Tyrannosaurus rex is the largest carnivorous dinosaur.",
       "lastModificationDateTime": "12/12/2022",
       "status": "Want to Learn"
@@ -346,6 +395,7 @@
     {
       "id": 63,
       "frontText": "Who is the protagonist in 'The Great Gatsby'?",
+      "image": "",
       "backAnswer": "Jay Gatsby is the protagonist in 'The Great Gatsby'.",
       "lastModificationDateTime": "12/15/2022",
       "status": "Want to Learn"
@@ -353,6 +403,7 @@
     {
       "id": 64,
       "frontText": "What is the speed of light in a vacuum?",
+      "image": "",
       "backAnswer": "The speed of light in a vacuum is approximately 299,792 kilometers per second.",
       "lastModificationDateTime": "12/11/2022",
       "status": "Want to Learn"
@@ -360,6 +411,7 @@
     {
       "id": 65,
       "frontText": "Who is the Roman god of war?",
+      "image": "",
       "backAnswer": "Mars is the Roman god of war.",
       "lastModificationDateTime": "12/11/2021",
       "status": "Want to Learn"
@@ -367,6 +419,7 @@
     {
       "id": 66,
       "frontText": "What is the capital of Egypt?",
+      "image": "",
       "backAnswer": "Cairo is the capital of Egypt.",
       "lastModificationDateTime": "12/12/2021",
       "status": "Want to Learn"
@@ -374,6 +427,7 @@
     {
       "id": 67,
       "frontText": "Who discovered the law of gravity?",
+      "image": "",
       "backAnswer": "Sir Isaac Newton discovered the law of gravity.",
       "lastModificationDateTime": "12/11/2021",
       "status": "Want to Learn"
@@ -381,6 +435,7 @@
     {
       "id": 68,
       "frontText": "What is the smallest prime number?",
+      "image": "",
       "backAnswer": "The smallest prime number is 2.",
       "lastModificationDateTime": "12/16/2021",
       "status": "Want to Learn"
@@ -388,6 +443,7 @@
     {
       "id": 69,
       "frontText": "Who is the author of 'The Iliad'?",
+      "image": "",
       "backAnswer": "Homer is the author of 'The Iliad'.",
       "lastModificationDateTime": "12/06/2021",
       "status": "Want to Learn"
@@ -395,6 +451,7 @@
     {
       "id": 70,
       "frontText": "What is the capital of South Korea?",
+      "image": "",
       "backAnswer": "Seoul is the capital of South Korea.",
       "lastModificationDateTime": "12/24/2021",
       "status": "Want to Learn"
@@ -402,6 +459,7 @@
     {
       "id": 71,
       "frontText": "Who discovered the polio vaccine?",
+      "image": "",
       "backAnswer": "Jonas Salk discovered the polio vaccine.",
       "lastModificationDateTime": "12/22/2021",
       "status": "Want to Learn"
@@ -409,6 +467,7 @@
     {
       "id": 72,
       "frontText": "What is the capital of Turkey?",
+      "image": "",
       "backAnswer": "Ankara is the capital of Turkey.",
       "lastModificationDateTime": "12/22/2021",
       "status": "Want to Learn"
@@ -416,6 +475,7 @@
     {
       "id": 73,
       "frontText": "Who wrote 'The Road Not Taken'?",
+      "image": "",
       "backAnswer": "Robert Frost wrote 'The Road Not Taken'.",
       "lastModificationDateTime": "12/25/2021",
       "status": "Want to Learn"
@@ -423,6 +483,7 @@
     {
       "id": 74,
       "frontText": "What is the largest planet in our solar system?",
+      "image": "",
       "backAnswer": "Jupiter is the largest planet in our solar system.",
       "lastModificationDateTime": "12/12/2021",
       "status": "Want to Learn"
@@ -430,6 +491,7 @@
     {
       "id": 75,
       "frontText": "Who is the author of 'The Jungle Book'?",
+      "image": "",
       "backAnswer": "Rudyard Kipling is the author of 'The Jungle Book'.",
       "lastModificationDateTime": "11/16/2021",
       "status": "Want to Learn"
@@ -437,6 +499,7 @@
     {
       "id": 76,
       "frontText": "What is the capital of Saudi Arabia?",
+      "image": "",
       "backAnswer": "Riyadh is the capital of Saudi Arabia.",
       "lastModificationDateTime": "11/14/2021",
       "status": "Want to Learn"
@@ -444,6 +507,7 @@
     {
       "id": 77,
       "frontText": "Who wrote 'The Grapes of Wrath'?",
+      "image": "",
       "backAnswer": "John Steinbeck wrote 'The Grapes of Wrath'.",
       "lastModificationDateTime": "11/16/2021",
       "status": "Want to Learn"
@@ -451,6 +515,7 @@
     {
       "id": 78,
       "frontText": "What is the chemical symbol for oxygen?",
+      "image": "",
       "backAnswer": "The chemical symbol for oxygen is O2.",
       "lastModificationDateTime": "12/15/2021",
       "status": "Want to Learn"
@@ -458,6 +523,7 @@
     {
       "id": 79,
       "frontText": "Who is the Queen of Pop?",
+      "image": "",
       "backAnswer": "Madonna is often referred to as the Queen of Pop.",
       "lastModificationDateTime": "12/12/2021",
       "status": "Want to Learn"
@@ -465,6 +531,7 @@
     {
       "id": 80,
       "frontText": "What is the largest ocean predator?",
+      "image": "",
       "backAnswer": "The killer whale (orca) is the largest ocean predator.",
       "lastModificationDateTime": "12/15/2021",
       "status": "Want to Learn"
@@ -472,6 +539,7 @@
     {
       "id": 81,
       "frontText": "Who discovered penicillin?",
+      "image": "",
       "backAnswer": "Alexander Fleming discovered penicillin.",
       "lastModificationDateTime": "10/16/2021",
       "status": "Want to Learn"
@@ -479,6 +547,7 @@
     {
       "id": 82,
       "frontText": "What is the largest lake in the world?",
+      "image": "",
       "backAnswer": "The Caspian Sea is the largest lake in the world.",
       "lastModificationDateTime": "12/12/2021",
       "status": "Want to Learn"
@@ -486,6 +555,7 @@
     {
       "id": 83,
       "frontText": "Who is the father of modern physics?",
+      "image": "",
       "backAnswer": "Albert Einstein is often regarded as the father of modern physics.",
       "lastModificationDateTime": "12/16/2015",
       "status": "Want to Learn"
@@ -493,6 +563,7 @@
     {
       "id": 84,
       "frontText": "What is the capital of Australia?",
+      "image": "",
       "backAnswer": "Canberra is the capital of Australia.",
       "lastModificationDateTime": "12/16/2020",
       "status": "Want to Learn"
@@ -500,6 +571,7 @@
     {
       "id": 85,
       "frontText": "Who wrote 'Wuthering Heights'?",
+      "image": "",
       "backAnswer": "Emily Brontë wrote 'Wuthering Heights'.",
       "lastModificationDateTime": "12/16/2019",
       "status": "Want to Learn"
@@ -507,6 +579,7 @@
     {
       "id": 86,
       "frontText": "What is the largest desert in Africa?",
+      "image": "",
       "backAnswer": "The Sahara Desert is the largest desert in Africa.",
       "lastModificationDateTime": "12/12/2012",
       "status": "Want to Learn"
@@ -514,6 +587,7 @@
     {
       "id": 87,
       "frontText": "Who was the first woman to win a Nobel Prize?",
+      "image": "",
       "backAnswer": "Marie Curie was the first woman to win a Nobel Prize.",
       "lastModificationDateTime": "12/23/2021",
       "status": "Want to Learn"
@@ -521,6 +595,7 @@
     {
       "id": 88,
       "frontText": "What is the capital of South Korea?",
+      "image": "",
       "backAnswer": "Seoul is the capital of South Korea.",
       "lastModificationDateTime": "08/16/2021",
       "status": "Want to Learn"
@@ -528,6 +603,7 @@
     {
       "id": 89,
       "frontText": "Who wrote 'Brave New World'?",
+      "image": "",
       "backAnswer": "Aldous Huxley wrote 'Brave New World'.",
       "lastModificationDateTime": "11/16/2021",
       "status": "Want to Learn"
@@ -535,6 +611,7 @@
     {
       "id": 90,
       "frontText": "What is the largest bird of prey?",
+      "image": "",
       "backAnswer": "The Andean condor is the largest bird of prey.",
       "lastModificationDateTime": "12/12/2022",
       "status": "Want to Learn"
@@ -542,6 +619,7 @@
     {
       "id": 91,
       "frontText": "Who painted 'Girl with a Pearl Earring'?",
+      "image": "",
       "backAnswer": "Johannes Vermeer painted 'Girl with a Pearl",
       "lastModificationDateTime": "11/11/2021",
       "status": "Want to Learn"
@@ -549,6 +627,7 @@
     {
       "id": 92,
       "frontText": "What is the largest planet in our solar system?",
+      "image": "",
       "backAnswer": "Jupiter is the largest planet in our solar system.",
       "lastModificationDateTime": "11/16/2021",
       "status": "Want to Learn"
@@ -556,6 +635,7 @@
     {
       "id": 93,
       "frontText": "Who wrote 'One Hundred Years of Solitude'?",
+      "image": "",
       "backAnswer": "Gabriel García Márquez wrote 'One Hundred Years of Solitude'.",
       "lastModificationDateTime": "12/15/2021",
       "status": "Want to Learn"
@@ -563,6 +643,7 @@
     {
       "id": 94,
       "frontText": "What is the capital of Thailand?",
+      "image": "",
       "backAnswer": "Bangkok is the capital of Thailand.",
       "lastModificationDateTime": "10/16/2020",
       "status": "Want to Learn"
@@ -570,6 +651,7 @@
     {
       "id": 95,
       "frontText": "Who is the founder of Microsoft?",
+      "image": "",
       "backAnswer": "Bill Gates is the founder of Microsoft.",
       "lastModificationDateTime": "12/16/2021",
       "status": "Want to Learn"
@@ -577,6 +659,7 @@
     {
       "id": 97,
       "frontText": "Who wrote 'The Old Man and the Sea'?",
+      "image": "",
       "backAnswer": "Hi this is test",
       "lastModificationDateTime": "12/16/2019",
       "status": "Want to Learn"
@@ -584,6 +667,7 @@
     {
       "id": 98,
       "frontText": "What is the capital of China?",
+      "image": "",
       "backAnswer": "Beijing is the capital of China.",
       "lastModificationDateTime": "12/16/2017",
       "status": "Want to Learn"
@@ -591,6 +675,7 @@
     {
       "id": 99,
       "frontText": "Who discovered the structure of DNA?",
+      "image": "",
       "backAnswer": "James Watson and Francis Crick discovered the structure of DNA.",
       "lastModificationDateTime": "12/16/2018",
       "status": "Want to Learn"
@@ -598,12 +683,14 @@
     {
       "id": 100,
       "frontText": "What is the largest island in the world?",
+      "image": "",
       "backAnswer": "Greenland is the largest island in the world.",
       "lastModificationDateTime": "12/16/2016",
       "status": "Want to Learn"
     },
     {
       "frontText": "First Try",
+      "image": "",
       "backAnswer": "scxbvxcv",
       "lastModificationDateTime": "12/18/2023",
       "status": "Want to Learn",
@@ -611,10 +698,19 @@
     },
     {
       "frontText": "New Card",
+      "image": "",
       "backAnswer": "sdfsdf",
       "lastModificationDateTime": "12/18/2023",
       "status": "Want to Learn",
       "id": 102
+    },
+    {
+      "frontText": "",
+      "backAnswer": "Musa",
+      "image": "blob:http://localhost:3000/a8a4f65c-59e9-4dda-8eca-e3ea70a53630",
+      "status": "Want to Learn",
+      "lastModificationDateTime": "12/21/2023",
+      "id": 103
     }
   ],
   "projects": [

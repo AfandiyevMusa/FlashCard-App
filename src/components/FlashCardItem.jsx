@@ -21,7 +21,11 @@ const FlashCardItem = ({ card, onDelete, onUpdate, onSelect, isSelected }) => {
             </div>
             <div className="flipper">
                 <div className="front">
-                    <h3 className="frontTxt">{card.frontText}</h3>
+                    {card.image ? (
+                        <img src={card.image} alt="Card" className="card-image" />
+                    ) : (
+                        <h3 className="frontTxt">{card.frontText}</h3>
+                    )}
                     <div className="buttons">
                         <button className="update-button" onClick={() => onUpdate(card)}>
                             Update

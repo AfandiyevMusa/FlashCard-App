@@ -46,6 +46,10 @@
     font-size: 20px;
   }
 
+  .card-image{
+    width: 150px;
+  }
+
   .backTxt{
     font-size: 20px;
     padding: 15px;

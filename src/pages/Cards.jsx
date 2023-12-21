@@ -7,7 +7,6 @@ import UpdateCardModal from "../components/UpdateCardModal.jsx";
 import Notification from "../components/Notification.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TablePagination from "@mui/material/TablePagination";
 import "../assets/style/pages/cards.css";
 
 const Cards = () => {
@@ -19,12 +18,9 @@ const Cards = () => {
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
     const [selectedSortings, setSelectedSortings] = useState([]);
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
     const notify = useCallback((message) => toast.success(message), []);
 
     const handleSelectCard = (cardId) => {
-        // Toggle the selection status of the card
         setSelectedCards((prevSelected) =>
             prevSelected.includes(cardId)
                 ? prevSelected.filter((id) => id !== cardId)
@@ -33,16 +29,12 @@ const Cards = () => {
     };
 
     const handleShare = () => {
-        // Gather details of selected cards
         const selectedCardDetails = cards
             .filter((card) => selectedCards.includes(card.id))
-            .map(({ id, frontText, backAnswer }) => ({ id, frontText, backAnswer }));
+            .map(({ id, frontText, backAnswer, image }) => ({ id, frontText, backAnswer, image }));
 
-        // Convert selected card details to JSON
         const jsonData = JSON.stringify(selectedCardDetails, null, 2);
 
-        // TODO: Integrate with an email sending service or use a mailto link
-        // For simplicity, let's open the default email client with mailto link
         const mailtoLink = `mailto:?subject=Flash Cards&body=${encodeURIComponent(jsonData)}`;
         window.location.href = mailtoLink;
     };
@@ -56,15 +48,6 @@ const Cards = () => {
     const handleSortingChange = (event) => {
         const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
         setSelectedSortings(selectedOptions);
-    };
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
     };
 
     useEffect(() => {
@@ -105,43 +88,32 @@ const Cards = () => {
         };
 
         fetchCards();
-    }, [selectedStatus, selectedSortings, page, rowsPerPage]);
+    }, [selectedStatus, selectedSortings]);
 
     useEffect(() => {
-        const fetchInitialCards = async () => {
+        const fetchCards = async () => {
             try {
-                let apiUrl = `http://localhost:3001/cards?_page=${page + 1}&_limit=${rowsPerPage}`;
-
+                let apiUrl = "http://localhost:3001/cards";
                 if (selectedStatus !== "All status") {
-                    apiUrl += `&status=${selectedStatus}`;
+                    apiUrl += `?status=${selectedStatus}`;
                 }
-
+    
                 const response = await axios.get(apiUrl);
-                const initialCards = response.data;
-
-                initialCards.sort((a, b) => {
-                    const dateA = new Date(a.lastModificationDateTime);
-                    const dateB = new Date(b.lastModificationDateTime);
-
-                    if (dateA.getFullYear() !== dateB.getFullYear()) {
-                        return dateB.getFullYear() - dateA.getFullYear();
-                    }
-
-                    if (dateA.getMonth() !== dateB.getMonth()) {
-                        return dateB.getMonth() - dateA.getMonth();
-                    }
-
-                    return dateB.getDate() - dateA.getDate();
+    
+                let sortedCards = response.data;
+    
+                selectedSortings.forEach((sortingOption) => {
+                    // ... (existing sorting logic)
                 });
-
-                setCards(initialCards);
+    
+                setCards(sortedCards);
             } catch (error) {
-                console.error("Error fetching initial cards:", error);
+                console.error("Error fetching cards:", error);
             }
         };
-
-        fetchInitialCards();
-    }, [selectedStatus, page, rowsPerPage]);
+    
+        fetchCards();
+    }, [selectedStatus, selectedSortings]);
 
     const handleDelete = async (id) => {
         try {
@@ -268,14 +240,6 @@ const Cards = () => {
                         Create
                     </button>
                 </div>
-                <TablePagination
-                    component="div"
-                    count={100}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
                 <div className="flashcard-list">
                     {filteredCards.map((card, index) => (
                         <FlashCardItem
