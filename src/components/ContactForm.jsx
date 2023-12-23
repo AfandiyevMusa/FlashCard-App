@@ -22,19 +22,17 @@ const ContactForm = () => {
         try {
             const currentDateTime = new Date().toLocaleString();
     
-            // Send the form data to the json-server
             await axios.post("http://localhost:3001/messages", {
                 ...formData,
                 createdDate: currentDateTime,
             });
     
-            // Reset the form after submission
             setFormData({
                 name: "",
                 email: "",
                 message: "",
             });
-    
+
             alert("Message sent successfully!");
         } catch (error) {
             console.error("Error submitting form:", error);

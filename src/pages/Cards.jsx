@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import FlashCardItem from "../components/FlashCardItem.jsx";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Navbar from "../components/Navbar.jsx";
 import CreateCardModal from "../components/CreateCardModal.jsx";
 import UpdateCardModal from "../components/UpdateCardModal.jsx";
@@ -17,8 +18,72 @@ const Cards = () => {
     const [updateCard, setUpdateCard] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
-    const [selectedSortings, setSelectedSortings] = useState(["idDescending"]); // Default sorting option
+    const [selectedSortings, setSelectedSortings] = useState(["idDescending"])
     const notify = useCallback((message) => toast.success(message), []);
+
+    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(1);
+
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    const fetchInitialCards = useCallback(async () => {
+        try {
+            const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6`);
+            const initialCards = response.data;
+
+            if (initialCards.length === 0) {
+                setHasMore(false);
+                return;
+            }
+
+            setPage(page + 1);
+            setCards(initialCards);
+        } catch (error) {
+            console.error("Error fetching initial cards:", error);
+        }
+    }, [page]);
+
+    const loadMore = useCallback(async () => {
+        try {
+            setIsLoadingMore(true);
+            const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6`);
+            const newCards = response.data;
+    
+            if (newCards.length === 0) {
+                setHasMore(false);
+                return;
+            }
+    
+            setTimeout(() => {
+                setPage(page + 1);
+                setCards((prevCards) => [...prevCards, ...newCards]);
+            }, 300);
+        } catch (error) {
+            console.error("Error fetching more cards:", error);
+        } finally {
+            setIsLoadingMore(false);
+        }
+    }, [page]);    
+
+    useEffect(() => {
+        fetchInitialCards();
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+            if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoadingMore && hasMore) {
+                loadMore();
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [isLoadingMore, hasMore, loadMore]); 
 
     const handleSelectCard = (cardId) => {
         setSelectedCards((prevSelected) =>
@@ -105,6 +170,7 @@ const Cards = () => {
     };
 
     const handleUpdate = (card) => {
+        setUpdateCard(card);
         setIsUpdateModalOpen(true);
     };
 
@@ -136,20 +202,20 @@ const Cards = () => {
     };
 
     const handleUpdateCard = async (updatedCard) => {
-        try {
-            updateCard.stopPropagation();
+        try {    
             setCards((prevCards) =>
                 prevCards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
             );
-
+    
             await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
-
+    
             notify("Card updated successfully!");
             setIsUpdateModalOpen(false);
         } catch (error) {
             console.error("Error updating card:", error);
         }
     };
+    
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -217,6 +283,13 @@ const Cards = () => {
                         Create
                     </button>
                 </div>
+                <InfiniteScroll
+                    dataLength={cards.length}
+                    next={loadMore}
+                    hasMore={hasMore}
+                    loader={<h4 className="loading">Loading More...</h4>}
+                    endMessage={<p>No more cards to load.</p>}
+                >
                 <div className="flashcard-list">
                     {filteredCards.map((card, index) => (
                         <FlashCardItem
@@ -229,6 +302,7 @@ const Cards = () => {
                         />
                     ))}
                 </div>
+                </InfiniteScroll>
             </div>
             {isCreateModalOpen && (
                 <CreateCardModal onCreate={handleCreate} onClose={closeCreateModal} />

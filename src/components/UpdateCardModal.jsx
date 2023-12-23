@@ -16,7 +16,7 @@ const UpdateCardModal = ({ card, onUpdate, onClose }) => {
         };
 
         onUpdate(updatedCard);
-        onClose(); // Close the modal after updating
+        onClose();
     };
 
     return (
