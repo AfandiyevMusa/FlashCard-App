@@ -48,22 +48,22 @@ const Cards = () => {
             setIsLoadingMore(true);
             const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6`);
             const newCards = response.data;
-    
+
             if (newCards.length === 0) {
                 setHasMore(false);
                 return;
             }
-    
+
             setTimeout(() => {
                 setPage(page + 1);
                 setCards((prevCards) => [...prevCards, ...newCards]);
-            }, 300);
+            }, 750);
         } catch (error) {
             console.error("Error fetching more cards:", error);
         } finally {
             setIsLoadingMore(false);
         }
-    }, [page]);    
+    }, [page]);
 
     useEffect(() => {
         fetchInitialCards();
@@ -83,7 +83,7 @@ const Cards = () => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [isLoadingMore, hasMore, loadMore]); 
+    }, [isLoadingMore, hasMore, loadMore]);
 
     const handleSelectCard = (cardId) => {
         setSelectedCards((prevSelected) =>
@@ -113,6 +113,18 @@ const Cards = () => {
     const handleSortingChange = (event) => {
         const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
         setSelectedSortings(selectedOptions);
+    };
+
+    const handleRearrangeCards = (draggedCardId, dropTargetCardId) => {
+        // Find the indexes of the dragged and drop-target cards
+        const draggedIndex = cards.findIndex((card) => card.id === draggedCardId);
+        const dropTargetIndex = cards.findIndex((card) => card.id === dropTargetCardId);
+    
+        // Swap the positions of the cards
+        const newCards = [...cards];
+        [newCards[draggedIndex], newCards[dropTargetIndex]] = [newCards[dropTargetIndex], newCards[draggedIndex]];
+    
+        setCards(newCards);
     };
 
     useEffect(() => {
@@ -202,20 +214,20 @@ const Cards = () => {
     };
 
     const handleUpdateCard = async (updatedCard) => {
-        try {    
+        try {
             setCards((prevCards) =>
                 prevCards.map((card) => (card.id === updatedCard.id ? updatedCard : card))
             );
-    
+
             await axios.put(`http://localhost:3001/cards/${updatedCard.id}`, updatedCard);
-    
+
             notify("Card updated successfully!");
             setIsUpdateModalOpen(false);
         } catch (error) {
             console.error("Error updating card:", error);
         }
     };
-    
+
 
     const openCreateModal = () => {
         setIsCreateModalOpen(true);
@@ -234,7 +246,8 @@ const Cards = () => {
     };
 
     const filteredCards = cards.filter((card) =>
-        card.frontText.toLowerCase().includes(searchInput.toLowerCase())
+        card.frontText.toLowerCase().includes(searchInput.toLowerCase()) ||
+        card.backAnswer.toLowerCase().includes(searchInput.toLowerCase())
     );
 
     return (
@@ -259,6 +272,7 @@ const Cards = () => {
                             <option>All status</option>
                             <option>Want to Learn</option>
                             <option>Mark as Noted</option>
+                            <option>Learned</option>
                         </select>
                         <input
                             className="search"
@@ -288,20 +302,21 @@ const Cards = () => {
                     next={loadMore}
                     hasMore={hasMore}
                     loader={<h4 className="loading">Loading More...</h4>}
-                    endMessage={<p>No more cards to load.</p>}
+                    endMessage={<p className="finished-loading">No more cards to load.</p>}
                 >
-                <div className="flashcard-list">
-                    {filteredCards.map((card, index) => (
-                        <FlashCardItem
-                            key={card.id}
-                            card={card}
-                            onDelete={handleDelete}
-                            onUpdate={handleUpdate}
-                            onSelect={handleSelectCard}
-                            isSelected={selectedCards.includes(card.id)}
-                        />
-                    ))}
-                </div>
+                    <div className="flashcard-list">
+                        {filteredCards.map((card, index) => (
+                            <FlashCardItem
+                                key={card.id}
+                                card={card}
+                                onDelete={handleDelete}
+                                onUpdate={handleUpdate}
+                                onSelect={handleSelectCard}
+                                isSelected={selectedCards.includes(card.id)}
+                                onRearrange={handleRearrangeCards} // Pass the prop here
+                            />
+                        ))}
+                    </div>
                 </InfiniteScroll>
             </div>
             {isCreateModalOpen && (

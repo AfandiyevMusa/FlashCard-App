@@ -71,3 +71,9 @@
   text-align: center;
   font-size: 25px;
 }
+
+.finished-loading{
+  color: red;
+  text-align: center;
+  font-size: 25px;
+}
