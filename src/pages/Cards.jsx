@@ -18,12 +18,10 @@ const Cards = () => {
     const [updateCard, setUpdateCard] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("All status");
-    const [selectedSortings, setSelectedSortings] = useState(["idDescending"])
+    const [selectedSortings, setSelectedSortings] = useState(["newestToOldest"])
     const notify = useCallback((message) => toast.success(message), []);
-
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
-
     const [isLoadingMore, setIsLoadingMore] = useState(false);
 
     const fetchInitialCards = useCallback(async () => {
@@ -116,11 +114,9 @@ const Cards = () => {
     };
 
     const handleRearrangeCards = (draggedCardId, dropTargetCardId) => {
-        // Find the indexes of the dragged and drop-target cards
         const draggedIndex = cards.findIndex((card) => card.id === draggedCardId);
         const dropTargetIndex = cards.findIndex((card) => card.id === dropTargetCardId);
     
-        // Swap the positions of the cards
         const newCards = [...cards];
         [newCards[draggedIndex], newCards[dropTargetIndex]] = [newCards[dropTargetIndex], newCards[draggedIndex]];
     
@@ -155,6 +151,9 @@ const Cards = () => {
                             break;
                         case "idDescending":
                             sortedCards = sortedCards.sort((a, b) => b.id - a.id);
+                            break;
+                        case "newestToOldest":
+                            sortedCards = sortedCards.sort((a, b) => new Date(b.lastModificationDateTime) - new Date(a.lastModificationDateTime));
                             break;
                         default:
                             break;
@@ -204,10 +203,11 @@ const Cards = () => {
             });
 
             await axios.post("http://localhost:3001/cards", newCard);
-
+            
             notify("Card created successfully!");
-
+            
             setIsCreateModalOpen(false);
+            window.location.reload();
         } catch (error) {
             console.error("Error creating card:", error);
         }
@@ -286,7 +286,7 @@ const Cards = () => {
                             value={selectedSortings}
                             onChange={handleSortingChange}
                         >
-                            <option value="default">Choose sorting option...</option>
+                            <option value="newestToOldest">Choose sorting option...</option>
                             <option value="frontTextAZ">Sort frontText A-Z</option>
                             <option value="frontTextZA">Sort frontText Z-A</option>
                             <option value="backAnswerAZ">Sort backAnswer A-Z</option>

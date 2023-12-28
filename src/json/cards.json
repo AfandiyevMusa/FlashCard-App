@@ -90,10 +90,10 @@
     },
     {
       "id": 15,
-      "frontText": "Who discovered penicillin??",
+      "frontText": "Who discovered penicillin????",
       "image": "",
       "backAnswer": "Alexander Fleming discovered penicillin.",
-      "lastModificationDateTime": "12/18/2023, 11:43:04 PM",
+      "lastModificationDateTime": "12/27/2023, 2:21:03 PM",
       "status": "Want to Learn"
     },
     {
@@ -666,19 +666,11 @@
     },
     {
       "id": 100,
-      "frontText": "What is the largest island in the world???",
+      "frontText": "What is the largest island in the world?",
       "image": "",
       "backAnswer": "Greenland is the largest island in the world....",
-      "lastModificationDateTime": "12/23/2023, 4:18:13 AM",
+      "lastModificationDateTime": "12/27/2023, 2:20:41 PM",
       "status": "Mark as Noted"
-    },
-    {
-      "frontText": "",
-      "backAnswer": "sdfsf",
-      "image": "blob:http://localhost:3000/42934eee-88fd-48d8-8984-c4c8bc2fa916",
-      "status": "Want to Learn",
-      "lastModificationDateTime": "12/24/2023",
-      "id": 101
     }
   ],
   "projects": [

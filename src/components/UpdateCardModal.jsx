@@ -5,7 +5,7 @@ const UpdateCardModal = ({ card, onUpdate, onClose }) => {
     const [frontText, setFrontText] = useState(card.frontText);
     const [backAnswer, setBackAnswer] = useState(card.backAnswer);
     const [status, setStatus] = useState(card.status);
-    const [newImage, setNewImage] = useState(null); // Track the new image file
+    const [newImage, setNewImage] = useState(null);
 
     const isImageCard = !card.frontText && card.image;
 
@@ -38,6 +38,7 @@ const UpdateCardModal = ({ card, onUpdate, onClose }) => {
 
         onUpdate(updatedCard);
         onClose();
+        window.location.reload();
     };
 
     const handleImageChange = (e) => {
