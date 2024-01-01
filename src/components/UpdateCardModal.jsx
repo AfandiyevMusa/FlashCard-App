@@ -70,7 +70,7 @@ const UpdateCardModal = ({ card, onUpdate, onClose }) => {
                     )}
 
                     <label htmlFor="backAnswer">Back Text:</label>
-                    <input
+                    <textarea
                         type="textarea"
                         id="backAnswer"
                         value={backAnswer}

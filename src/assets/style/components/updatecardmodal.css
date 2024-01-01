@@ -68,3 +68,19 @@ select {
   justify-content: center;
   align-items: center;
 }
+
+.submit-button:hover{
+  background-color: darkgreen;
+}
+
+.back-button:hover{
+  background-color: darkred;
+}
+
+input{
+  outline: none !important;
+}
+
+textarea{
+  outline: none !important;
+}

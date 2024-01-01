@@ -10,10 +10,10 @@
       "id": 4
     },
     {
-      "order": 82,
-      "frontText": "Who discovered the structure of DNA???",
-      "backAnswer": "James Watson and Francis Crick discovered the structure of DNA.",
-      "status": "Learned",
+      "order": 20,
+      "frontText": "Who founded Facebook?",
+      "backAnswer": "Mark Zuckerberg founded Facebook.",
+      "status": "Want to Learn",
       "lastModificationDateTime": "12/16/2023",
       "image": "",
       "id": 5
@@ -100,9 +100,9 @@
       "order": 11
     },
     {
-      "order": 20,
-      "frontText": "Who founded Facebook?",
-      "backAnswer": "Mark Zuckerberg founded Facebook.",
+      "order": 12,
+      "frontText": "Who discovered penicillin????",
+      "backAnswer": "Alexander Fleming discovered penicillin.",
       "status": "Want to Learn",
       "lastModificationDateTime": "12/27/2023, 2:21:03 PM",
       "image": "",
@@ -741,18 +741,9 @@
     {
       "order": 29,
       "frontText": "What is the capital of Russia?",
-      "backAnswer": "Moscow is the capital of Russia.",
+      "backAnswer": "Moscow is the capital of Russia....",
       "status": "Want to Learn",
-      "lastModificationDateTime": "12/23/2023, 4:21:07 AM",
-      "image": "",
-      "id": 99
-    },
-    {
-      "order": 12,
-      "frontText": "Who discovered penicillin????",
-      "backAnswer": "Alexander Fleming discovered penicillin.",
-      "status": "Want to Learn",
-      "lastModificationDateTime": "12/27/2023, 2:20:41 PM",
+      "lastModificationDateTime": "1/1/2024, 1:51:13 PM",
       "image": "",
       "id": 100
     }
