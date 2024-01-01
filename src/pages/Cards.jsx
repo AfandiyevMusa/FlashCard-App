@@ -26,7 +26,7 @@ const Cards = () => {
 
     const fetchInitialCards = useCallback(async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6`);
+            const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6&_sort=order`);
             const initialCards = response.data;
 
             if (initialCards.length === 0) {
@@ -40,6 +40,7 @@ const Cards = () => {
             console.error("Error fetching initial cards:", error);
         }
     }, [page]);
+
 
     const loadMore = useCallback(async () => {
         try {
@@ -113,16 +114,75 @@ const Cards = () => {
         setSelectedSortings(selectedOptions);
     };
 
-    const handleRearrangeCards = (draggedCardId, dropTargetCardId) => {
-        const draggedIndex = cards.findIndex((card) => card.id === draggedCardId);
-        const dropTargetIndex = cards.findIndex((card) => card.id === dropTargetCardId);
-    
-        const newCards = [...cards];
-        [newCards[draggedIndex], newCards[dropTargetIndex]] = [newCards[dropTargetIndex], newCards[draggedIndex]];
-    
-        setCards(newCards);
-    };
+    const handleRearrangeCards = async (
+        draggedCardId,
+        draggedOrder,
+        draggedFrontText,
+        draggedBackAnswer,
+        draggedStatus,
+        draggedModifiedTime,
+        draggedImage,
+        dropTargetCardId,
+        dropTargetOrder,
+        dropTargetFrontText,
+        dropTargetBackAnswer,
+        dropTargetStatus,
+        dropTargetModifiedTime,
+        dropTargetImage
+    ) => {
+        try {
+            // Update the order of the dragged card on the client side
+            const draggedIndex = cards.findIndex((card) => card.id === Number(draggedCardId));
+            const dropTargetIndex = cards.findIndex((card) => card.id === Number(dropTargetCardId));
 
+            const newCards = [...cards];
+            [newCards[draggedIndex], newCards[dropTargetIndex]] = [newCards[dropTargetIndex], newCards[draggedIndex]];
+
+            newCards[draggedIndex].order = dropTargetOrder;
+            newCards[dropTargetIndex].order = draggedOrder;
+
+            newCards[draggedIndex].frontText = dropTargetFrontText;
+            newCards[dropTargetIndex].frontText = draggedFrontText;
+
+            newCards[draggedIndex].backAnswer = dropTargetBackAnswer;
+            newCards[dropTargetIndex].backAnswer = draggedBackAnswer;
+
+            newCards[draggedIndex].status = dropTargetStatus;
+            newCards[dropTargetIndex].status = draggedStatus;
+
+            newCards[draggedIndex].lastModificationDateTime = draggedModifiedTime;
+            newCards[dropTargetIndex].lastModificationDateTime = dropTargetModifiedTime;
+
+            newCards[draggedIndex].id = draggedModifiedTime;
+            newCards[dropTargetIndex].id = dropTargetModifiedTime;            
+
+            // Update the order of the dragged card on the server
+            await axios.put(`http://localhost:3001/cards/${draggedCardId}`, {
+                order: dropTargetOrder,
+                frontText: dropTargetFrontText,
+                backAnswer: dropTargetBackAnswer,
+                status: dropTargetStatus,
+                lastModificationDateTime: draggedModifiedTime,
+                image: dropTargetImage,
+            });
+
+            // Update the order of the drop target card on the server
+            await axios.put(`http://localhost:3001/cards/${dropTargetCardId}`, {
+                order: draggedOrder,
+                frontText: draggedFrontText,
+                backAnswer: draggedBackAnswer,
+                status: draggedStatus,
+                lastModificationDateTime: dropTargetModifiedTime,
+                image: draggedImage,
+            });
+
+            // Update the local state
+            setCards(newCards);
+        } catch (error) {
+            console.error("Error rearranging cards:", error);
+        }
+    };
+    
     useEffect(() => {
         const fetchCards = async () => {
             try {
@@ -188,30 +248,39 @@ const Cards = () => {
     const handleCreate = async (newCard) => {
         try {
             const currentDateTime = new Date().toLocaleDateString();
-
+    
+            // Fetch existing cards to determine the next order
+            const response = await axios.get("http://localhost:3001/cards");
+            const existingCards = response.data;
+    
+            // Determine the next order by incrementing the maximum existing order by 1
+            const maxOrder = existingCards.reduce((maxOrder, card) => Math.max(maxOrder, card.order || 0), 0);
+            const nextOrder = Math.max(maxOrder + 1, 100); // Start from 100 or increment if necessary
+    
             newCard.lastModificationDateTime = currentDateTime;
             newCard.status = "Want to Learn";
-
+            newCard.order = nextOrder; // Assign the next order
+    
             setCards((prevCards) => {
                 const updatedCards = [...prevCards, newCard];
-
+    
                 const sortedCards = updatedCards.sort((a, b) => {
                     return new Date(b.lastModificationDateTime) - new Date(a.lastModificationDateTime);
                 });
-
+    
                 return sortedCards;
             });
-
+    
             await axios.post("http://localhost:3001/cards", newCard);
-            
+    
             notify("Card created successfully!");
-            
+    
             setIsCreateModalOpen(false);
             window.location.reload();
         } catch (error) {
             console.error("Error creating card:", error);
         }
-    };
+    };    
 
     const handleUpdateCard = async (updatedCard) => {
         try {
@@ -313,7 +382,8 @@ const Cards = () => {
                                 onUpdate={handleUpdate}
                                 onSelect={handleSelectCard}
                                 isSelected={selectedCards.includes(card.id)}
-                                onRearrange={handleRearrangeCards} // Pass the prop here
+                                onRearrange={handleRearrangeCards}
+                                cards={cards}
                             />
                         ))}
                     </div>

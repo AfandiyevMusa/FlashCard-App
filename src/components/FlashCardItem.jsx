@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../assets/style/components/flashcarditem.css";
 
-const FlashCardItem = ({ card, onDelete, onUpdate, onSelect, isSelected, onRearrange }) => {
+const FlashCardItem = (props) => {
     const [isFlipped, setIsFlipped] = useState(false);
-    const [draggedCards, setDraggedCards] = useState([]);
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
@@ -15,21 +14,43 @@ const FlashCardItem = ({ card, onDelete, onUpdate, onSelect, isSelected, onRearr
 
     const handleDragStart = (e) => {
         const draggedCardId = e.currentTarget.getAttribute("data-card-id");
-        setDraggedCards([draggedCardId]);
+        e.dataTransfer.setData("text/plain", draggedCardId);
     };
-    
-    const handleDrop = (e, dropTargetCardId) => {
+
+    const handleDrop = (e) => {
         e.preventDefault();
+        const dropTargetCardId = e.currentTarget.getAttribute("data-card-id");
+        const draggedCardId = e.dataTransfer.getData("text/plain");
+
     
-        if (!draggedCards.length || draggedCards[0] === dropTargetCardId) {
-            setDraggedCards([]);
-            return;
-        }
+        // Access the 'cards' prop to find the order
+        
     
-        onRearrange(draggedCards[0], dropTargetCardId);
-    
-        setDraggedCards([]);
+        const dropTargetFrontText = props.cards.find((card) => card.id === Number(dropTargetCardId)).frontText;
+        const draggedFrontText = props.cards.find((card) => card.id === Number(draggedCardId)).frontText;
+
+        const dropTargetBackAnswer = props.cards.find((card) => card.id === Number(dropTargetCardId)).backAnswer;
+        const draggedBackAnswer = props.cards.find((card) => card.id === Number(draggedCardId)).backAnswer;
+
+        const dropTargetStatus = props.cards.find((card) => card.id === Number(dropTargetCardId)).status;
+        const draggedStatus = props.cards.find((card) => card.id === Number(draggedCardId)).status;
+
+        const dropTargetModifiedTime = props.cards.find((card) => card.id === Number(dropTargetCardId)).lastModificationDateTime;
+        const draggedModifiedTime = props.cards.find((card) => card.id === Number(draggedCardId)).lastModificationDateTime;
+
+        const dropTargetImage = props.cards.find((card) => card.id === Number(dropTargetCardId)).image;
+        const draggedImage = props.cards.find((card) => card.id === Number(draggedCardId)).image;
+        
+        const dropTargetOrder = props.cards.find((card) => card.id === Number(dropTargetCardId)).order;
+        const draggedOrder = props.cards.find((card) => card.id === Number(draggedCardId)).order;
+
+        // Call onRearrange with the order information
+        props.onRearrange(draggedCardId, draggedOrder, draggedFrontText, draggedBackAnswer, draggedStatus, 
+            draggedModifiedTime, draggedImage, dropTargetCardId, dropTargetOrder, dropTargetFrontText, 
+            dropTargetBackAnswer, dropTargetStatus, dropTargetModifiedTime, dropTargetImage);
     };
+    
+    
 
     return (
         <div
@@ -38,41 +59,41 @@ const FlashCardItem = ({ card, onDelete, onUpdate, onSelect, isSelected, onRearr
             draggable="true"
             onDragStart={handleDragStart}
             onDragOver={handleDragOver}
-            onDrop={(e) => handleDrop(e, card.id)}
-            data-card-id={card.id}
+            onDrop={handleDrop}
+            data-card-id={props.card.id}
         >
             <div className="checkbox-container">
                 <input
                     type="checkbox"
                     className="checkbox"
-                    checked={isSelected}
-                    onChange={() => onSelect(card.id)}
+                    checked={props.isSelected}
+                    onChange={() => props.onSelect(props.card.id)}
                 />
                 <div className="checkbox-icon">&#10003;</div>
             </div>
             <div className="flipper">
                 <div className="front">
-                    {card.image ? (
-                        <img src={card.image} alt="Card" className="card-image" />
+                    {props.card.image ? (
+                        <img src={props.card.image} alt="Card" className="card-image" />
                     ) : (
-                        <h3 className="frontTxt">{card.frontText}</h3>
+                        <h3 className="frontTxt">{props.card.frontText}</h3>
                     )}
                     <div className="buttons">
-                        <button className="update-button" onClick={() => onUpdate(card)}>
+                        <button className="update-button" onClick={() => props.onUpdate(props.card)}>
                             Update
                         </button>
-                        <button className="delete-button" onClick={() => onDelete(card.id)}>
+                        <button className="delete-button" onClick={() => props.onDelete(props.card.id)}>
                             Delete
                         </button>
                     </div>
-                    <p className="status">Status: {card.status}</p>
-                    <span className="hidden" data-last-modification={card.lastModificationDateTime}></span>
+                    <p className="status">Status: {props.card.status}</p>
+                    <span className="hidden" data-last-modification={props.card.lastModificationDateTime}></span>
                     <p className="last-modification">
-                        Last Modified: {new Date(card.lastModificationDateTime).toLocaleDateString()}
+                        Last Modified: {new Date(props.card.lastModificationDateTime).toLocaleDateString()}
                     </p>
                 </div>
                 <div className="back">
-                    <p className="backTxt">{card.backAnswer}</p>
+                    <p className="backTxt">{props.card.backAnswer}</p>
                 </div>
             </div>
         </div>
