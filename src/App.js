@@ -7,7 +7,7 @@ import Messages from './pages/Messages.jsx';
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename='/FlashCard-App'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contactpage" element={<ContactPage />} />
