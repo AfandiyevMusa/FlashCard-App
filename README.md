@@ -1,5 +1,3 @@
-Flash Card App - Comprehensive Project Overview
-
 Introduction
 
 Welcome to the Flash Card App, a powerful educational tool built with React. This detailed README provides an in-depth exploration of the project's architecture, functionalities, and usage. The app serves as a robust platform for creating, managing, and studying flash cards, enhancing the learning experience for users.
@@ -140,4 +138,4 @@ Share Function
 Conclusion
 
 The Flash Card App provides a comprehensive solution for educational purposes. With a user-friendly interface, intuitive card management, and additional features like searching, filtering, and sharing, it offers an engaging learning experience. The modular component structure ensures code reusability and maintainability, making it a valuable tool for both learners and educators.
-![image](https://github.com/AfandiyevMusa/FlashCard-App/assets/113282393/2b5b9e94-eb08-4c97-b8d8-b37d7cbf58cb)
+![image](https://github.com/AfandiyevMusa/FlashCard-App/assets/113282393/7f1ec6d4-2670-4dd3-b102-ebe1984b88cd)
